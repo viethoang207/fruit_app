@@ -12,18 +12,21 @@ class AuthRepository {
           email: email, password: password);
     } on FirebaseAuthException catch (error) {
       switch (error.code) {
-        case "invalid-email":
-          break;
+        case "account-exists-with-different-credential":
+        case "email-already-in-use":
+          return "Email already used. Go to login page.";
         case "wrong-password":
-          break;
+          return "Wrong email/password combination.";
         case "user-not-found":
-          break;
+          return "No user found with this email.";
         case "user-disabled":
-          break;
-        case "too-many-requests":
-          break;
+          return "User disabled.";
         case "operation-not-allowed":
-          break;
+          return "Too many requests to log into this account.";
+        case "invalid-email":
+          return "Email address is invalid.";
+        default:
+          return "Login failed. Please try again.";
       }
     }
     return Constants.loginSuccess;
