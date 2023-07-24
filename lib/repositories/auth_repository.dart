@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:training_example/constants/constants.dart';
 
-@injectable
+@singleton
 class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
 

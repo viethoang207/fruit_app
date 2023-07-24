@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:training_example/di/injection.dart';
 import 'package:training_example/features/authentication/login_page.dart';
 import 'package:training_example/repositories/auth_repository.dart';
@@ -26,8 +25,7 @@ class MyApp extends StatelessWidget {
     return RepositoryProvider(
       create: (context) => AuthRepository(),
       child: BlocProvider(
-        create: (context) => AuthBloc(
-            authRepository: RepositoryProvider.of<AuthRepository>(context)),
+        create: (context) => getIt.get<AuthBloc>(),
         child: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {

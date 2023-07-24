@@ -25,9 +25,9 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i3.AuthRepository>(() => _i3.AuthRepository());
-    gh.factory<_i4.AuthBloc>(
-        () => _i4.AuthBloc(authRepository: gh<_i3.AuthRepository>()));
+    gh.singleton<_i3.AuthRepository>(_i3.AuthRepository());
+    gh.singleton<_i4.AuthBloc>(
+        _i4.AuthBloc(authRepository: gh<_i3.AuthRepository>()));
     return this;
   }
 }

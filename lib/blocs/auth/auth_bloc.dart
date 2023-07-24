@@ -6,7 +6,7 @@ import '../../repositories/auth_repository.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-@injectable
+@singleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
 
