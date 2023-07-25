@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:training_example/generated/assets.dart';
 import 'package:training_example/main.dart';
-import 'package:training_example/views/authentication/login_page.dart';
 
 import 'introduction_page_view.dart';
 
@@ -66,19 +65,19 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   title: 'Order Your Food',
                   subTitle:
                       'Now you can order food any time right from your mobile.',
-                  image: 'assets/order_animated.json',
+                  image: Assets.assetsOrderAnimated,
                 ),
                 IntroductionPageView(
                   title: 'Cooking Safe Food',
                   subTitle:
                       'We are maintain safety and We keep clean while making food.',
-                  image: 'assets/cooking_animated.json',
+                  image: Assets.assetsCookingAnimated,
                 ),
                 IntroductionPageView(
                   title: 'Quick Delivery',
                   subTitle:
                       'Orders your favorite meals will be immediately deliver.',
-                  image: 'assets/delivery_animated.json',
+                  image: Assets.assetsDeliveryAnimated,
                 ),
               ],
             ),

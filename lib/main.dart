@@ -13,6 +13,7 @@ import 'blocs/auth/auth_bloc.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   Bloc.observer = const AppBlocObserver();
 
   configureDependencies();
@@ -21,7 +22,7 @@ Future<void> main() async {
   bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
 
   if (isFirstTime) {
-    getIt.get<AuthBloc>().add(LogoutRequest());
+    FirebaseAuth.instance.signOut();
   }
 
   runApp(

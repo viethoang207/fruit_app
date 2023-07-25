@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_example/blocs/auth/auth_bloc.dart';
+import 'package:training_example/generated/assets.dart';
 import 'package:training_example/utils/snackbar_hepler.dart';
 import 'package:training_example/utils/string_helper.dart';
 import 'package:training_example/views/authentication/sign_up_page.dart';
@@ -35,7 +36,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    //ScaffoldMessenger.of(context).hideCurrentSnackBar();
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const SizedBox(height: 50),
                     Image.asset(
-                      'assets/ramen.png',
+                      Assets.assetsRamen,
                       height: 300,
                       width: 300,
                     ),

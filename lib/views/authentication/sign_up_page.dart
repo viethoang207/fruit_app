@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_example/blocs/auth/auth_bloc.dart';
+import 'package:training_example/generated/assets.dart';
 import 'package:training_example/utils/snackbar_hepler.dart';
 import '../../di/injection.dart';
 import '../../utils/string_helper.dart';
@@ -76,7 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         children: [
                           const SizedBox(height: 20),
                           Image.asset(
-                            'assets/greeting.png',
+                            Assets.assetsGreeting,
                             height: 300,
                             width: 300,
                           ),
