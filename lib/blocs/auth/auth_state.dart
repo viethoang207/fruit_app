@@ -24,3 +24,11 @@ class AuthenticateErrorState extends AuthState {
   @override
   List<Object?> get props => [error];
 }
+
+class SignUpErrorState extends AuthState {
+  final String error;
+  SignUpErrorState({required this.error});
+
+  @override
+  List<Object?> get props => [error];
+}

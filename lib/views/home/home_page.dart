@@ -1,7 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_example/blocs/auth/auth_bloc.dart';
+import 'package:training_example/di/injection.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,6 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var authBloc = getIt.get<AuthBloc>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 // FirebaseAuth.instance.signOut();
-                context.read<AuthBloc>().add(LogoutRequest());
+                authBloc.add(LogoutRequest());
               },
               child: const Text('Sign out'),
             )

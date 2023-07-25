@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class MainPage extends StatefulWidget {
+class GeneralPage extends StatefulWidget {
   final Widget child;
 
-  const MainPage({required this.child, super.key});
+  const GeneralPage({required this.child, super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<GeneralPage> createState() => _GeneralPage();
 }
 
-class _MainPageState extends State<MainPage> {
+class _GeneralPage extends State<GeneralPage> {
   int currentIndex = 0;
 
   @override

@@ -12,4 +12,11 @@ class LoginRequest extends AuthEvent {
   LoginRequest({required this.email, required this.password});
 }
 
+class SignUpRequest extends AuthEvent {
+  final String email;
+  final String password;
+
+  SignUpRequest({required this.email, required this.password});
+}
+
 class LogoutRequest extends AuthEvent {}
