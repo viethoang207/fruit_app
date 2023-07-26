@@ -21,7 +21,8 @@ class IntroductionPageView extends StatelessWidget {
                 fontSize: 40,
                 fontFamily: 'Mukta-Bold',
                 fontWeight: FontWeight.bold,
-                color: Colors.indigo.shade800
+                color: Colors.indigo.shade800,
+                height: 1.2
               ),
             ),
           ),

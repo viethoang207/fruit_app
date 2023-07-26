@@ -2,11 +2,12 @@
 class Assets {
   Assets._();
 
-  static const String assetsCookingAnimated = 'assets/cooking_animated.json';
-  static const String assetsDeliveryAnimated = 'assets/delivery_animated.json';
   static const String assetsFirebaseLogo = 'assets/firebase_logo.png';
+  static const String assetsFreshFruits = 'assets/fresh_fruits.json';
   static const String assetsGreeting = 'assets/greeting.png';
+  static const String assetsHelloFruit = 'assets/hello_fruit.png';
   static const String assetsOrderAnimated = 'assets/order_animated.json';
-  static const String assetsRamen = 'assets/ramen.png';
+  static const String assetsShipping = 'assets/shipping.json';
+  static const String assetsVarietyFruits = 'assets/variety_fruits.json';
 
 }

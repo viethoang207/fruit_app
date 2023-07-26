@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ContactPage extends StatefulWidget {
-  const ContactPage({Key? key}) : super(key: key);
+class CartPage extends StatefulWidget {
+  const CartPage({Key? key}) : super(key: key);
 
   @override
-  State<ContactPage> createState() => _ContactPageState();
+  State<CartPage> createState() => _CartPageState();
 }
 
-class _ContactPageState extends State<ContactPage> {
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(

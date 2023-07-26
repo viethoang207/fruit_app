@@ -57,27 +57,33 @@ class _IntroductionPageState extends State<IntroductionPage> {
               controller: _controller,
               onPageChanged: (index) => setState(() {
                 currentIndex = index;
-                isLastPage = index == 2;
+                isLastPage = index == 3;
                 isFirstPage = index == 0;
               }),
               children: const [
                 IntroductionPageView(
-                  title: 'Order Your Food',
+                  title: 'Variety Products For Everyone',
                   subTitle:
-                      'Now you can order food any time right from your mobile.',
-                  image: Assets.assetsOrderAnimated,
+                  'Full range of fruits according to each region. Choose your favorite fruit now!',
+                  image: Assets.assetsVarietyFruits,
                 ),
                 IntroductionPageView(
-                  title: 'Cooking Safe Food',
+                  title: 'Quality Assurance',
                   subTitle:
-                      'We are maintain safety and We keep clean while making food.',
-                  image: Assets.assetsCookingAnimated,
+                  'All fruits are guaranteed absolute quality, no pesticides, no stimulants and no preservatives.',
+                  image: Assets.assetsFreshFruits,
+                ),
+                IntroductionPageView(
+                  title: 'Easy Ordering',
+                  subTitle:
+                      'Now you can order fruits any time right from your mobile.\nSearch and order easily with just a few basic steps.',
+                  image: Assets.assetsOrderAnimated,
                 ),
                 IntroductionPageView(
                   title: 'Quick Delivery',
                   subTitle:
-                      'Orders your favorite meals will be immediately deliver.',
-                  image: Assets.assetsDeliveryAnimated,
+                      'Orders your favorite fruits will be immediately deliver. We are always ready to serve!',
+                  image: Assets.assetsShipping,
                 ),
               ],
             ),
@@ -87,7 +93,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
               child: SmoothPageIndicator(
                 effect: const JumpingDotEffect(dotWidth: 10, dotHeight: 10, verticalOffset: 10),
                 controller: _controller,
-                count: 3,
+                count: 4,
               ),
             ),
             Container(
@@ -95,7 +101,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
               alignment: const Alignment(1, 0.94),
               child: ElevatedButton(
                   onPressed: () {
-                    if (currentIndex == 2) {
+                    if (currentIndex == 3) {
                       goLoginPage();
                     } else {
                       _controller.nextPage(

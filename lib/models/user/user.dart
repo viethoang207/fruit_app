@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -15,5 +16,6 @@ class UserInfo with _$UserInfo {
     @JsonKey(name: 'imageURL') String? imageURL,
   }) = _UserInfo;
 
-  factory UserInfo.fromJson(Map<String, Object?> json) => _$UserInfoFromJson(json);
+  factory UserInfo.fromJson(Map<String, Object?> json) =>
+      _$UserInfoFromJson(json);
 }

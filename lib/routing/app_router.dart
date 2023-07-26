@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/widgets.dart';
-import 'package:training_example/views/contact/contact_page.dart';
+import 'package:training_example/views/cart/cart_page.dart';
 import 'package:training_example/views/general_page/general_page.dart';
 import 'package:training_example/views/home/home_page.dart';
 import 'package:training_example/views/search/search_page.dart';
@@ -25,7 +25,7 @@ final router = GoRouter(
                 builder: (context, state) => const HomePage()),
             GoRoute(
                 path: '/contact',
-                builder: (context, state) => const ContactPage()),
+                builder: (context, state) => const CartPage()),
             GoRoute(
                 path: '/search',
                 builder: (context, state) => const SearchPage()),

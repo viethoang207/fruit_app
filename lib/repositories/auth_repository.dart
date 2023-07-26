@@ -29,13 +29,13 @@ class AuthRepository {
       return getErrorString(errorCode: error.code);
     }
     await signIn(email: email, password: password);
-    createNewUser(user: user.UserInfo(username: email, name: email, age: 0, imageURL: Constants.defaultImageUrl));
+    await createNewUser(user: user.UserInfo(username: email, name: email, age: 0, imageURL: Constants.defaultImageUrl));
     return Constants.loginSuccess;
   }
 
   Future<void> createNewUser({required user.UserInfo user}) async {
     try {
-      await _fireStore.collection('User').doc().set(user.toJson());
+      await _fireStore.collection('User').doc(user.username).set(user.toJson());
     } on FirebaseException {
       rethrow;
     }
