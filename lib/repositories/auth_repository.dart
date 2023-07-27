@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:training_example/constants/constants.dart';
-import 'package:training_example/models/user/user.dart' as user;
+import 'package:training_example/models/user_info/user.dart' as user;
 import 'package:training_example/utils/firebase_error_list.dart';
 
 @singleton

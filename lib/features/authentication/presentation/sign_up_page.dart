@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:training_example/blocs/auth/auth_bloc.dart';
 import 'package:training_example/generated/assets.dart';
 import 'package:training_example/utils/snackbar_hepler.dart';
-import '../../di/injection.dart';
-import '../../utils/string_helper.dart';
+import '../../../di/injection.dart';
+import '../../../utils/string_helper.dart';
+import '../blocs/auth_bloc.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:training_example/blocs/auth/auth_bloc.dart';
 import 'package:training_example/generated/assets.dart';
 import 'package:training_example/utils/snackbar_hepler.dart';
 import 'package:training_example/utils/string_helper.dart';
-import 'package:training_example/views/authentication/sign_up_page.dart';
+import 'package:training_example/features/authentication/presentation/sign_up_page.dart';
 
-import '../../di/injection.dart';
+import '../../../di/injection.dart';
+import '../blocs/auth_bloc.dart';
 
 class LoginPage extends StatefulWidget {
 

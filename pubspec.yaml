@@ -95,12 +95,26 @@ flutter:
      - family: Mukta-Bold
        fonts:
          - asset: fonts/Mukta-Bold.ttf
+     - family: Mukta-ExtraBold
+       fonts:
+         - asset: fonts/Mukta-ExtraBold.ttf
+     - family: Mukta-ExtraLight
+       fonts:
+         - asset: fonts/Mukta-ExtraLight.ttf
+     - family: Mukta-Light
+       fonts:
+         - asset: fonts/Mukta-Light.ttf
      - family: Mukta-Regular
        fonts:
          - asset: fonts/Mukta-Regular.ttf
      - family: Mukta-Medium
        fonts:
          - asset: fonts/Mukta-Medium.ttf
-
+     - family: Mukta-Regular
+       fonts:
+         - asset: fonts/Mukta-Regular.ttf
+     - family: Mukta-SemiBold
+       fonts:
+         - asset: fonts/Mukta-SemiBold.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

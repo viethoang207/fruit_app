@@ -138,8 +138,7 @@ class __$$_UserInfoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.none, explicitToJson: true)
+@JsonSerializable()
 class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
   const _$_UserInfo(
       {@JsonKey(name: 'username') required this.username,

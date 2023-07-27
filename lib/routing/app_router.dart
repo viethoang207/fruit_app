@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/widgets.dart';
-import 'package:training_example/views/cart/cart_page.dart';
-import 'package:training_example/views/general_page/general_page.dart';
-import 'package:training_example/views/home/home_page.dart';
-import 'package:training_example/views/search/search_page.dart';
-import 'package:training_example/views/setting/setting_page.dart';
+import 'package:training_example/features/cart/cart_page.dart';
+import 'package:training_example/features/general_page/general_page.dart';
+import 'package:training_example/features/home/presentation/home_page.dart';
+import 'package:training_example/features/search/search_page.dart';
+import 'package:training_example/features/setting/setting_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');

@@ -1,0 +1,17 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import 'package:training_example/models/user_info/bloc/user_info_event.dart';
+import 'package:training_example/models/user_info/bloc/user_info_state.dart';
+import 'package:training_example/repositories/user_repository.dart';
+
+@singleton
+class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
+  final UserRepository repository;
+
+  UserInfoBloc({required this.repository}) : super(UserInfoLoadingState()){
+    on<FetchCurrentUserInfoEvent>((event, state) async {
+      var info = await repository.getCurrentUserInfo();
+      emit(UserInfoFetchedState(userInfo: info));
+    });
+  }
+}

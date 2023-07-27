@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../blocs/auth/auth_bloc.dart';
 import '../../di/injection.dart';
+import '../authentication/blocs/auth_bloc.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);

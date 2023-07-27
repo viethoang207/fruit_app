@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -8,7 +7,6 @@ part 'user.g.dart';
 
 @freezed
 class UserInfo with _$UserInfo {
-  @JsonSerializable(fieldRename: FieldRename.none, explicitToJson: true)
   const factory UserInfo({
     @JsonKey(name: 'username') required String username,
     @JsonKey(name: 'name') required String name,
