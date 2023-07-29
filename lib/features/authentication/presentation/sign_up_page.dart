@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_example/generated/assets.dart';
 import 'package:training_example/utils/snackbar_hepler.dart';
+import '../../../constants/fonts.dart';
 import '../../../di/injection.dart';
 import '../../../utils/string_helper.dart';
 import '../blocs/auth_bloc.dart';
@@ -87,7 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             style: TextStyle(
                                 fontSize: 40,
                                 color: Colors.grey,
-                                fontFamily: 'Mukta-Bold'),
+                                fontFamily: Fonts.muktaBold),
                           ),
                           const SizedBox(height: 20),
                           Form(
@@ -106,7 +107,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       prefixIcon:
                                           const Icon(Icons.email_outlined),
                                       labelStyle: const TextStyle(
-                                          fontFamily: 'Mukhtar-Medium'),
+                                          fontFamily: Fonts.muktaMedium),
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10)),
@@ -124,7 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       prefixIcon: const Icon(Icons.key_outlined),
                                       labelText: 'Password',
                                       labelStyle: const TextStyle(
-                                          fontFamily: 'Mukhtar-Medium'),
+                                          fontFamily: Fonts.muktaMedium),
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10)),
@@ -144,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                           Icons.confirmation_num_outlined),
                                       labelText: 'Confirm password',
                                       labelStyle: const TextStyle(
-                                          fontFamily: 'Mukhtar-Medium'),
+                                          fontFamily: Fonts.muktaMedium),
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10)),

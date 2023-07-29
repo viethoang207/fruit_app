@@ -5,6 +5,7 @@ import 'package:training_example/utils/snackbar_hepler.dart';
 import 'package:training_example/utils/string_helper.dart';
 import 'package:training_example/features/authentication/presentation/sign_up_page.dart';
 
+import '../../../constants/fonts.dart';
 import '../../../di/injection.dart';
 import '../blocs/auth_bloc.dart';
 
@@ -75,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                           fontSize: 40,
                           color: Colors.grey,
-                        fontFamily: 'Mukta-Bold'
+                        fontFamily: Fonts.muktaBold
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -92,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: InputDecoration(
                                 labelText: 'Email',
                                 prefixIcon: const Icon(Icons.email_outlined),
-                                labelStyle: const TextStyle(fontFamily: 'Mukhtar-Medium'),
+                                labelStyle: const TextStyle(fontFamily: Fonts.muktaMedium),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
@@ -113,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 prefixIcon: const Icon(Icons.key_outlined),
                                 labelText: 'Password',
-                                labelStyle: const TextStyle(fontFamily: 'Mukhtar-Medium'),
+                                labelStyle: const TextStyle(fontFamily: Fonts.muktaMedium),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
@@ -142,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                     const Text(
                         'or',
                       style: TextStyle(
-                        fontFamily: 'Mukta-Medium',
+                        fontFamily: Fonts.muktaMedium,
                         fontSize: 18,
                         color: Colors.grey
                       ),
@@ -158,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         'Create new account',
                         style: TextStyle(
-                            fontFamily: 'Mukta-Medium',
+                            fontFamily: Fonts.muktaMedium,
                             fontSize: 18,
                             color: Colors.grey.shade700,
                           decoration: TextDecoration.underline

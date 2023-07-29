@@ -10,9 +10,9 @@ class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
   final _fireStore = FirebaseFirestore.instance;
 
-  Future<String> signIn({required String email, required String password}) async {
+  Future<String> signIn(
+      {required String email, required String password}) async {
     try {
-
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (error) {
@@ -21,7 +21,8 @@ class AuthRepository {
     return Constants.loginSuccess;
   }
 
-  Future<String> createAccount({required String email, required String password}) async {
+  Future<String> createAccount(
+      {required String email, required String password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -29,7 +30,12 @@ class AuthRepository {
       return getErrorString(errorCode: error.code);
     }
     await signIn(email: email, password: password);
-    await createNewUser(user: user.UserInfo(username: email, name: email, age: 0, imageURL: Constants.defaultImageUrl));
+    await createNewUser(
+        user: user.UserInfo(
+            username: email,
+            name: email,
+            age: 0,
+            imageURL: Constants.defaultImageUrl));
     return Constants.loginSuccess;
   }
 
@@ -41,7 +47,7 @@ class AuthRepository {
     }
   }
 
-  void signOut() async{
+  void signOut() async {
     await _firebaseAuth.signOut();
   }
 }

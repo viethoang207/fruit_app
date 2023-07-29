@@ -13,12 +13,11 @@ class Constants {
   static const defaultImageUrl = 'https://firebasestorage.googleapis.com/v0/b/trainingexample-f3dec.appspot.com/o/image_default.jpeg?alt=media&token=c7c67c80-9c10-4195-9f13-ac052febb1cc';
 
   static const categories = [
-    'Orange',
-    'Apple'
-    'Grape',
-    'Pineapple',
-    'Strawberry',
-    'Green Apple',
-    'Banana',
+    'ORGANIC',
+    'FRUIT',
+    'VEGGIES',
+    'GROCERY',
+    'FRIDGE',
+    'SEAFOOD',
   ];
 }

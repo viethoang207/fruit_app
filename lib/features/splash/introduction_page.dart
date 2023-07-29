@@ -4,6 +4,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:training_example/generated/assets.dart';
 import 'package:training_example/main.dart';
 
+import '../../constants/fonts.dart';
 import 'introduction_page_view.dart';
 
 class IntroductionPage extends StatefulWidget {
@@ -44,7 +45,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
               child: const Text(
                 'Skip',
                 style: TextStyle(
-                    color: Colors.grey, fontSize: 20, fontFamily: 'Mukta-Bold'),
+                    color: Colors.grey, fontSize: 20, fontFamily: Fonts.muktaBold),
               ),
             ),
           ),
@@ -117,7 +118,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   child: Text(
                     isLastPage ? 'Start' : 'Next',
                     style: const TextStyle(
-                        fontSize: 20, fontFamily: 'Mukta-Medium'),
+                        fontSize: 20, fontFamily: Fonts.muktaMedium),
                   )),
             ),
           ],

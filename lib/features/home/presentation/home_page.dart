@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_example/constants/constants.dart';
+import 'package:training_example/di/injection.dart';
+import 'package:training_example/features/home/widgets/fruit_item.dart';
+import 'package:training_example/features/home/widgets/horizontal_category.dart';
 import 'package:training_example/generated/assets.dart';
+import 'package:training_example/models/product/product.dart';
 import 'package:training_example/models/user_info/bloc/user_info_bloc.dart';
 import 'package:training_example/models/user_info/bloc/user_info_event.dart';
 import 'package:training_example/models/user_info/user.dart' as user_model;
+import 'package:training_example/repositories/product_repository.dart';
+import '../../../constants/fonts.dart';
 import '../../../models/user_info/bloc/user_info_state.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,11 +20,24 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<HomePage>{
   late UserInfoBloc userInfoBloc;
   late user_model.UserInfo userInfo;
   final categories = Constants.categories;
   bool isImageError = false;
+  final productRepo = getIt.get<ProductRepository>();
+  late List<Product> products;
+
+  final categoryMap = {
+    0: 'ORGANIC',
+    1: 'FRUIT',
+    2: 'VEGGIES',
+    3: 'GROCERY',
+    4: 'FRIDGE',
+    5: 'SEAFOOD'
+  };
+
+  int currentPickedCategory = 0;
 
   final CircleAvatar defaultAvatar = const CircleAvatar(
     radius: 25.0,
@@ -28,15 +47,26 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    print('init');
     userInfoBloc = context.read<UserInfoBloc>();
     userInfoBloc.add(FetchCurrentUserInfoEvent());
+    products = productRepo.getListProduct('ORGANIC');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
+        title: Text(
+          'Fruity',
+          style: TextStyle(
+              fontSize: 40,
+              color: Colors.green.shade800,
+              fontWeight: FontWeight.w900,
+              fontFamily: Fonts.dancingBold),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
@@ -74,45 +104,53 @@ class _HomePageState extends State<HomePage> {
               ))
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 35.0),
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(right: MediaQuery.of(context).size.width/4),
-              child: const Text(
-                'Discover Seasonal Fruits and Vegetables',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontFamily: 'Mukta-Medium',
-                  height: 1.5
-                ),
+      body: Column(
+        children: [
+          Container(
+            margin:
+                EdgeInsets.only(right: MediaQuery.of(context).size.width / 4, left: 10.0, top: 35.0),
+            child: const Text(
+              'Discover Seasonal Fruits and Vegetables',
+              style: TextStyle(
+                fontSize: 30,
+                fontFamily: Fonts.muktaMedium,
+                height: 1.4,
               ),
             ),
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                itemCount: categories.length,
-                itemBuilder: (context, index) => TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 30),
-                    child: Text(
-                      categories[index],
-                      style: const TextStyle(
-                        fontFamily: 'Mukta-Bold',
-                        fontSize: 20.0,
-                        color: Colors.black
-                      ),
-                    ),
-                  ),
-                ),
-                scrollDirection: Axis.horizontal,
+          ),
+          HorizontalCategory(
+            categories: Constants.categories,
+            initialIndex: currentPickedCategory,
+            onCategoryChange: (index) {
+              setState(() {
+                currentPickedCategory = index!;
+                products = productRepo.getListProduct(categoryMap[index]!);
+              });
+            }
+          ),
+          Expanded(
+            child: Scrollbar(
+              thickness: 1.5,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        crossAxisCount: 2,
+                        childAspectRatio: 3 / 5),
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      return FruitItem(item: products[index]);
+                    }),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

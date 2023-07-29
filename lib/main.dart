@@ -9,6 +9,8 @@ import 'package:training_example/features/authentication/presentation/login_page
 import 'package:training_example/routing/app_router.dart';
 import 'package:training_example/features/splash/introduction_page.dart';
 
+import 'constants/fonts.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -25,7 +27,7 @@ Future<void> main() async {
   runApp(
       MaterialApp(
         theme: ThemeData(
-          fontFamily: 'Mukta-Regular'
+          fontFamily: Fonts.muktaRegular
         ),
           debugShowCheckedModeBanner: false,
           home: isFirstTime ? const IntroductionPage() : const MyApp()

@@ -116,5 +116,8 @@ flutter:
      - family: Mukta-SemiBold
        fonts:
          - asset: fonts/Mukta-SemiBold.ttf
+     - family: Dancing-Bold
+       fonts:
+         - asset: fonts/Dancing-Bold.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -24,7 +24,7 @@ final router = GoRouter(
                 path: '/home',
                 builder: (context, state) => const HomePage()),
             GoRoute(
-                path: '/contact',
+                path: '/cart',
                 builder: (context, state) => const CartPage()),
             GoRoute(
                 path: '/search',
