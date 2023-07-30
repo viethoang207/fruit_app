@@ -84,41 +84,10 @@ class GeneralPageState extends State<GeneralPage>{
     );
   }
 
-  static int _calculateSelectedIndex(BuildContext context) {
-    final String location = GoRouterState.of(context).location;
-    if (location.startsWith('/home')) {
-      return 0;
-    }
-    if (location.startsWith('/cart')) {
-      return 1;
-    }
-    if (location.startsWith('/search')) {
-      return 2;
-    }
-    if (location.startsWith('/setting')) {
-      return 3;
-    }
-    return 0;
-  }
-
   void _onItemTapped(int index, BuildContext context) {
     setState(() {
       _selectedPageIndex = index;
       _pageController.jumpToPage(_selectedPageIndex);
     });
-    switch (index) {
-      case 0:
-        GoRouter.of(context).go('/home');
-        break;
-      case 1:
-        GoRouter.of(context).go('/cart');
-        break;
-      case 2:
-        GoRouter.of(context).go('/search');
-        break;
-      case 3:
-        GoRouter.of(context).go('/setting');
-        break;
-    }
   }
 }

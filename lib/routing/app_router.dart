@@ -6,6 +6,9 @@ import 'package:training_example/features/general_page/general_page.dart';
 import 'package:training_example/features/home/presentation/home_page.dart';
 import 'package:training_example/features/search/search_page.dart';
 import 'package:training_example/features/setting/setting_page.dart';
+import 'package:training_example/models/product/product.dart';
+
+import '../features/detail/detail_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -21,11 +24,9 @@ final router = GoRouter(
           builder: (context, state, child) => GeneralPage(child: child),
           routes: [
             GoRoute(
-                path: '/home',
-                builder: (context, state) => const HomePage()),
+                path: '/home', builder: (context, state) => const HomePage()),
             GoRoute(
-                path: '/cart',
-                builder: (context, state) => const CartPage()),
+                path: '/cart', builder: (context, state) => const CartPage()),
             GoRoute(
                 path: '/search',
                 builder: (context, state) => const SearchPage()),
@@ -33,4 +34,11 @@ final router = GoRouter(
                 path: '/setting',
                 builder: (context, state) => const SettingPage()),
           ]),
+      GoRoute(
+          path: '/detail',
+          name: 'detail',
+          builder: (context, state) {
+            Product item = state.extra as Product;
+            return DetailPage(fruitItem: item);
+          }),
     ]);

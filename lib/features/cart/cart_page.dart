@@ -13,7 +13,7 @@ class _CartPageState extends State<CartPage> {
     return const SafeArea(
       child: Center(
         child: Text(
-            'Contact'
+            'Cart'
         ),
       ),
     );

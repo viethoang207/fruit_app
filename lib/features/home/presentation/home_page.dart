@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:training_example/constants/constants.dart';
 import 'package:training_example/di/injection.dart';
 import 'package:training_example/features/home/widgets/fruit_item.dart';
@@ -20,7 +21,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<HomePage>{
+class _HomePageState extends State<HomePage> {
   late UserInfoBloc userInfoBloc;
   late user_model.UserInfo userInfo;
   final categories = Constants.categories;
@@ -47,10 +48,10 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<
 
   @override
   void initState() {
-    print('init');
-    userInfoBloc = context.read<UserInfoBloc>();
-    userInfoBloc.add(FetchCurrentUserInfoEvent());
-    products = productRepo.getListProduct('ORGANIC');
+    userInfoBloc = getIt.get<UserInfoBloc>();
+    // userInfoBloc.add(FetchCurrentUserInfoEvent());
+    reloadUserInfo();
+    products = productRepo.getListProduct(category: 'ORGANIC');
     super.initState();
   }
 
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<
           icon: const Icon(
             Icons.menu_rounded,
             color: Colors.grey,
-            size: 30,
+            size: 35,
           ),
           onPressed: () {},
         ),
@@ -124,7 +125,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<
             onCategoryChange: (index) {
               setState(() {
                 currentPickedCategory = index!;
-                products = productRepo.getListProduct(categoryMap[index]!);
+                products = productRepo.getListProduct(category: categoryMap[index]!);
               });
             }
           ),
@@ -141,7 +142,12 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<
                         childAspectRatio: 3 / 5),
                     itemCount: products.length,
                     itemBuilder: (context, index) {
-                      return FruitItem(item: products[index]);
+                      return FruitItem(
+                        item: products[index],
+                        onTap: () {
+                          GoRouter.of(context).goNamed('detail', extra: products[index]);
+                        }
+                      );
                     }),
               ),
             ),
@@ -151,6 +157,8 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<
     );
   }
 
-  @override
-  bool get wantKeepAlive => true;
+  void reloadUserInfo() async {
+    var bloc = getIt.get<UserInfoBloc>();
+    bloc.add(FetchCurrentUserInfoEvent());
+  }
 }

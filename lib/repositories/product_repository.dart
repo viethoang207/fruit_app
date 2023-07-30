@@ -4,7 +4,7 @@ import '../models/product/product.dart';
 
 @singleton
 class ProductRepository {
-  List<Product> getListProduct(String category) {
+  List<Product> getListProduct({required String category}) {
     late Product sample;
     switch (category) {
       case 'ORGANIC':

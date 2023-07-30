@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:training_example/models/user_info/bloc/user_info_bloc.dart';
 
 import '../../di/injection.dart';
 import '../authentication/blocs/auth_bloc.dart';
@@ -22,10 +24,15 @@ class _SettingPageState extends State<SettingPage> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // FirebaseAuth.instance.signOut();
                   authBloc.add(LogoutRequest());
                 },
                 child: const Text('Sign out'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  GoRouter.of(context).go('/detail');
+                },
+                child: const Text('Detail'),
               )
             ],
           )

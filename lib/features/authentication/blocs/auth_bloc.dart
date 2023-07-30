@@ -44,4 +44,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
   }
+
+  @override
+  Future<void> close() {
+    print('AuthBloc has closed');
+    return super.close();
+  }
 }
