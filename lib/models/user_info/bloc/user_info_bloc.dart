@@ -9,18 +9,9 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   final UserRepository repository;
 
   UserInfoBloc({required this.repository}) : super(UserInfoLoadingState()) {
-
     on<FetchCurrentUserInfoEvent>((event, emit) async {
       var info = await repository.getCurrentUserInfo();
       emit(UserInfoFetchedState(userInfo: info));
     });
-
-    add(FetchCurrentUserInfoEvent());
-  }
-
-  @override
-  Future<void> close() {
-    print('USER INFO BLOC has closed');
-    return super.close();
   }
 }

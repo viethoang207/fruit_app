@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:training_example/di/injection.dart';
 import 'package:training_example/features/authentication/blocs/auth_bloc.dart';
 import 'package:training_example/features/authentication/presentation/login_page.dart';
+import 'package:training_example/models/user_info/bloc/user_info_bloc.dart';
 import 'package:training_example/routing/app_router.dart';
 import 'package:training_example/features/splash/introduction_page.dart';
 
@@ -24,15 +25,10 @@ Future<void> main() async {
     FirebaseAuth.instance.signOut();
   }
 
-  runApp(
-      MaterialApp(
-        theme: ThemeData(
-          fontFamily: Fonts.muktaRegular
-        ),
-          debugShowCheckedModeBanner: false,
-          home: isFirstTime ? const IntroductionPage() : const MyApp()
-      )
-  );
+  runApp(MaterialApp(
+      theme: ThemeData(fontFamily: Fonts.muktaRegular),
+      debugShowCheckedModeBanner: false,
+      home: isFirstTime ? const IntroductionPage() : const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -40,18 +36,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt.get<AuthBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt.get<UserInfoBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt.get<AuthBloc>(),
+        )
+      ],
       child: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return MaterialApp.router(
-                debugShowCheckedModeBanner: false,
-                routerConfig: router
-            );
-          } else {
-            return const LoginPage();
+          switch (snapshot.connectionState) {
+            case ConnectionState.active:
+              if (snapshot.hasData) {
+                return MaterialApp.router(
+                    debugShowCheckedModeBanner: false, routerConfig: router);
+              } else {
+                return const LoginPage();
+              }
+            default:
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
           }
         },
       ),

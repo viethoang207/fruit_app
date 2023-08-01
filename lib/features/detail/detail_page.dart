@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:training_example/constants/fonts.dart';
 import 'package:training_example/models/product/product.dart';
-import 'package:training_example/routing/app_router.dart';
-
 import '../../generated/assets.dart';
 
 class DetailPage extends StatefulWidget {
@@ -22,7 +19,8 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   void initState() {
-    widget.fruitItem.images.forEach((element) => imageWidgets.add(
+    for (var element in widget.fruitItem.images) {
+      imageWidgets.add(
           Image.network(
             width: 300,
             element,
@@ -35,7 +33,8 @@ class _DetailPageState extends State<DetailPage> {
               );
             },
           ),
-        ));
+        );
+    }
     super.initState();
   }
 
@@ -53,7 +52,6 @@ class _DetailPageState extends State<DetailPage> {
                 size: 35, color: Colors.grey),
             onPressed: () {
               //TODO: Handle pop back
-
             },
           ),
         ),
@@ -102,32 +100,29 @@ class _DetailPageState extends State<DetailPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RichText(
-                            text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '\$${widget.fruitItem.dolar}',
-                                    style: const TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 40,
-                                        fontFamily: Fonts.muktaBold),
-                                  ),
-                                  const TextSpan(
-                                    text: '\tea',
-                                    style: TextStyle(
-                                        color: Colors.black87,
-                                        fontSize: 18,
-                                        fontFamily: Fonts.muktaMedium),
-                                  ),
-                                ]
-                            ),
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text: '\$${widget.fruitItem.dolar}',
+                                style: const TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 40,
+                                    fontFamily: Fonts.muktaBold),
+                              ),
+                              const TextSpan(
+                                text: '\tea',
+                                style: TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: 18,
+                                    fontFamily: Fonts.muktaMedium),
+                              ),
+                            ]),
                           ),
                           Container(
                             margin: const EdgeInsets.only(right: 20),
                             width: 150,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.grey.shade300
-                            ),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.grey.shade300),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -142,7 +137,9 @@ class _DetailPageState extends State<DetailPage> {
                                 const SizedBox(width: 20),
                                 const Text(
                                   '1',
-                                  style: TextStyle(fontSize: 25, fontFamily: Fonts.muktaSemiBold),
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontFamily: Fonts.muktaSemiBold),
                                 ),
                                 const SizedBox(width: 20),
                                 InkWell(
@@ -172,8 +169,7 @@ class _DetailPageState extends State<DetailPage> {
                         ),
                       ),
                       const SizedBox(height: 20.0),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
+                      SizedBox(
                         height: 55,
                         width: double.infinity,
                         child: ElevatedButton(
@@ -181,14 +177,16 @@ class _DetailPageState extends State<DetailPage> {
                             //TODO: Handle add to cart
                           },
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(Colors.red.shade400)
-                          ),
-                          child: const Text('ADD TO CART', style: TextStyle(fontFamily: Fonts.muktaSemiBold)),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.red.shade400)),
+                          child: const Text('ADD TO CART',
+                              style:
+                                  TextStyle(fontFamily: Fonts.muktaSemiBold)),
                         ),
                       ),
                       const SizedBox(height: 20.0),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
