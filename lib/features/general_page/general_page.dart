@@ -7,9 +7,7 @@ import 'package:training_example/features/setting/setting_page.dart';
 import '../home/widgets/icon_with_number_widget.dart';
 
 class GeneralPage extends StatefulWidget {
-  final Widget child;
-
-  const GeneralPage({required this.child, super.key});
+  const GeneralPage({super.key});
 
   @override
   State<GeneralPage> createState() => GeneralPageState();

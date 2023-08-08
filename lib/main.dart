@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:training_example/di/injection.dart';
 import 'package:training_example/features/authentication/blocs/auth_bloc.dart';
 import 'package:training_example/features/authentication/presentation/login_page.dart';
+import 'package:training_example/models/product/bloc/product_bloc.dart';
 import 'package:training_example/models/user_info/bloc/user_info_bloc.dart';
 import 'package:training_example/routing/app_router.dart';
 import 'package:training_example/features/splash/introduction_page.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt.get<AuthBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt.get<ProductBloc>(),
         )
       ],
       child: StreamBuilder<User?>(

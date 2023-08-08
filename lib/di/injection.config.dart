@@ -13,8 +13,9 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:training_example/features/authentication/blocs/auth_bloc.dart'
     as _i6;
+import 'package:training_example/models/product/bloc/product_bloc.dart' as _i7;
 import 'package:training_example/models/user_info/bloc/user_info_bloc.dart'
-    as _i7;
+    as _i8;
 import 'package:training_example/repositories/auth_repository.dart' as _i3;
 import 'package:training_example/repositories/product_repository.dart' as _i4;
 import 'package:training_example/repositories/user_repository.dart' as _i5;
@@ -35,8 +36,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i5.UserRepository>(_i5.UserRepository());
     gh.singleton<_i6.AuthBloc>(
         _i6.AuthBloc(authRepository: gh<_i3.AuthRepository>()));
-    gh.singleton<_i7.UserInfoBloc>(
-        _i7.UserInfoBloc(repository: gh<_i5.UserRepository>()));
+    gh.singleton<_i7.ProductBloc>(
+        _i7.ProductBloc(repository: gh<_i4.ProductRepository>()));
+    gh.singleton<_i8.UserInfoBloc>(
+        _i8.UserInfoBloc(repository: gh<_i5.UserRepository>()));
     return this;
   }
 }

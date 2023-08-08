@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Product _$ProductFromJson(Map<String, dynamic> json) {
+  return _Product.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Product {
   String get id => throw _privateConstructorUsedError;
@@ -25,6 +29,7 @@ mixin _$Product {
   double get dolar => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
 }
@@ -180,6 +185,7 @@ class __$$_ProductCopyWithImpl<$Res>
 
 /// @nodoc
 
+@JsonSerializable(explicitToJson: true)
 class _$_Product extends _Product {
   const _$_Product(
       {required this.id,
@@ -192,6 +198,9 @@ class _$_Product extends _Product {
       required final List<String> images})
       : _images = images,
         super._();
+
+  factory _$_Product.fromJson(Map<String, dynamic> json) =>
+      _$$_ProductFromJson(json);
 
   @override
   final String id;
@@ -237,6 +246,7 @@ class _$_Product extends _Product {
             const DeepCollectionEquality().equals(other._images, _images));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, category, title,
       description, unit, dolar, const DeepCollectionEquality().hash(_images));
@@ -246,6 +256,13 @@ class _$_Product extends _Product {
   @pragma('vm:prefer-inline')
   _$$_ProductCopyWith<_$_Product> get copyWith =>
       __$$_ProductCopyWithImpl<_$_Product>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ProductToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Product extends Product {
@@ -259,6 +276,8 @@ abstract class _Product extends Product {
       required final double dolar,
       required final List<String> images}) = _$_Product;
   const _Product._() : super._();
+
+  factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
 
   @override
   String get id;

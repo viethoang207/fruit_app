@@ -17,23 +17,13 @@ final GlobalKey<NavigatorState> _shellNavigatorKey =
 
 final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/home',
+    initialLocation: '/main',
     routes: [
-      ShellRoute(
-          navigatorKey: _shellNavigatorKey,
-          builder: (context, state, child) => GeneralPage(child: child),
-          routes: [
-            GoRoute(
-                path: '/home', builder: (context, state) => const HomePage()),
-            GoRoute(
-                path: '/cart', builder: (context, state) => const CartPage()),
-            GoRoute(
-                path: '/search',
-                builder: (context, state) => const SearchPage()),
-            GoRoute(
-                path: '/setting',
-                builder: (context, state) => const SettingPage()),
-          ]),
+      GoRoute(
+          path: '/main',
+          builder: (context, state) {
+            return const GeneralPage();
+          }),
       GoRoute(
           path: '/detail',
           name: 'detail',

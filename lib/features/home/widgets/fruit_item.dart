@@ -6,9 +6,9 @@ import '../../../generated/assets.dart';
 
 class FruitItem extends StatelessWidget {
   final Product item;
-  VoidCallback onTap;
+  final VoidCallback onTap;
 
-  FruitItem({Key? key, required this.item, required this.onTap}) : super(key: key);
+  const FruitItem({Key? key, required this.item, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +45,16 @@ class FruitItem extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Text(
                     item.name,
+                    maxLines: 2,
                     style: const TextStyle(
+                      overflow: TextOverflow.ellipsis,
                         fontFamily: Fonts.muktaBold, fontSize: 18, height: 1.3),
                   ),
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'With \$${item.unit}',
+                    '\$${item.unit}',
                     style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16,

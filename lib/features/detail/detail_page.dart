@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:training_example/constants/fonts.dart';
 import 'package:training_example/models/product/product.dart';
@@ -51,7 +52,7 @@ class _DetailPageState extends State<DetailPage> {
             icon: const Icon(Icons.arrow_back_ios_new,
                 size: 35, color: Colors.grey),
             onPressed: () {
-              //TODO: Handle pop back
+              GoRouter.of(context).pop();
             },
           ),
         ),

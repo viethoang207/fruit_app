@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:training_example/constants/constants.dart';
-import 'package:training_example/di/injection.dart';
 import 'package:training_example/features/home/widgets/fruit_item.dart';
 import 'package:training_example/features/home/widgets/horizontal_category.dart';
 import 'package:training_example/generated/assets.dart';
-import 'package:training_example/models/product/product.dart';
+import 'package:training_example/models/product/bloc/product_bloc.dart';
+import 'package:training_example/models/product/bloc/product_event.dart';
 import 'package:training_example/models/user_info/bloc/user_info_bloc.dart';
 import 'package:training_example/models/user_info/bloc/user_info_event.dart';
 import 'package:training_example/models/user_info/user.dart' as user_model;
-import 'package:training_example/repositories/product_repository.dart';
 import '../../../constants/fonts.dart';
+import '../../../models/product/bloc/product_state.dart';
 import '../../../models/user_info/bloc/user_info_state.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,22 +21,13 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   late UserInfoBloc userInfoBloc;
   late user_model.UserInfo userInfo;
   final categories = Constants.categories;
   bool isImageError = false;
-  final productRepo = getIt.get<ProductRepository>();
-  late List<Product> products;
-
-  final categoryMap = {
-    0: 'ORGANIC',
-    1: 'FRUIT',
-    2: 'VEGGIES',
-    3: 'GROCERY',
-    4: 'FRIDGE',
-    5: 'SEAFOOD'
-  };
+  late ProductBloc productBloc;
 
   int currentPickedCategory = 0;
 
@@ -49,13 +40,17 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     userInfoBloc = context.read<UserInfoBloc>();
-    products = productRepo.getListProduct(category: 'ORGANIC');
     userInfoBloc.add(FetchCurrentUserInfoEvent());
+
+    productBloc = context.read<ProductBloc>();
+    productBloc.add(FetchProductsEvent(category: Constants.categories[0]));
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
@@ -127,36 +122,56 @@ class _HomePageState extends State<HomePage> {
               onCategoryChange: (index) {
                 setState(() {
                   currentPickedCategory = index!;
-                  products =
-                      productRepo.getListProduct(category: categoryMap[index]!);
+                  productBloc.add(FetchProductsEvent(
+                      category: Constants.categories[index]));
                 });
               }),
-          Expanded(
-            child: Scrollbar(
-              thickness: 1.5,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            crossAxisCount: 2,
-                            childAspectRatio: 3 / 5),
-                    itemCount: products.length,
-                    itemBuilder: (context, index) {
-                      return FruitItem(
-                          item: products[index],
-                          onTap: () {
-                            GoRouter.of(context)
-                                .goNamed('detail', extra: products[index]);
-                          });
-                    }),
-              ),
-            ),
+          BlocBuilder<ProductBloc, ProductState>(
+            builder: (context, state) {
+              if (state is ProductsLoadingState) {
+                return const Expanded(
+                    child: Center(child: CircularProgressIndicator()));
+              } else if (state is ProductsErrorState) {
+                return Expanded(
+                    child: Center(
+                        child:
+                            Text('An Error has occurred! \n${state.error}')));
+              } else if (state is ProductsFetchedState) {
+                return Expanded(
+                  child: Scrollbar(
+                    thickness: 1.5,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 3 / 5),
+                          itemCount: state.products.length,
+                          itemBuilder: (context, index) {
+                            return FruitItem(
+                                item: state.products[index],
+                                onTap: () {
+                                  GoRouter.of(context).pushNamed('detail',
+                                      extra: state.products[index]);
+
+                                });
+                          }),
+                    ),
+                  ),
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
           )
         ],
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
