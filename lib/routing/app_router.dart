@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/widgets.dart';
-import 'package:training_example/features/cart/cart_page.dart';
+import 'package:training_example/features/cart/presentation/cart_page.dart';
 import 'package:training_example/features/general_page/general_page.dart';
 import 'package:training_example/features/home/presentation/home_page.dart';
 import 'package:training_example/features/search/search_page.dart';

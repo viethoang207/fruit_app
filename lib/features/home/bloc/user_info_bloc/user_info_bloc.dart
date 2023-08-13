@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:training_example/models/user_info/bloc/user_info_event.dart';
-import 'package:training_example/models/user_info/bloc/user_info_state.dart';
+import 'package:training_example/features/home/bloc/user_info_bloc/user_info_event.dart';
+import 'package:training_example/features/home/bloc/user_info_bloc/user_info_state.dart';
 import 'package:training_example/repositories/user_repository.dart';
 
 @singleton

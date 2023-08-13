@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:training_example/constants/constants.dart';
+import 'package:training_example/features/cart/bloc/cart_event.dart';
 import 'package:training_example/features/home/widgets/fruit_item.dart';
 import 'package:training_example/features/home/widgets/horizontal_category.dart';
 import 'package:training_example/generated/assets.dart';
-import 'package:training_example/models/product/bloc/product_bloc.dart';
-import 'package:training_example/models/product/bloc/product_event.dart';
-import 'package:training_example/models/user_info/bloc/user_info_bloc.dart';
-import 'package:training_example/models/user_info/bloc/user_info_event.dart';
+import 'package:training_example/features/home/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:training_example/models/user_info/user.dart' as user_model;
 import '../../../constants/fonts.dart';
-import '../../../models/product/bloc/product_state.dart';
-import '../../../models/user_info/bloc/user_info_state.dart';
+import '../../cart/bloc/cart_bloc.dart';
+import '../bloc/product_bloc/product_bloc.dart';
+import '../bloc/product_bloc/product_event.dart';
+import '../bloc/product_bloc/product_state.dart';
+import '../bloc/user_info_bloc/user_info_event.dart';
+import '../bloc/user_info_bloc/user_info_state.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,6 +27,7 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   late UserInfoBloc userInfoBloc;
   late user_model.UserInfo userInfo;
+  late CartBloc cartBloc;
   final categories = Constants.categories;
   bool isImageError = false;
   late ProductBloc productBloc;
@@ -44,6 +47,9 @@ class _HomePageState extends State<HomePage>
 
     productBloc = context.read<ProductBloc>();
     productBloc.add(FetchProductsEvent(category: Constants.categories[0]));
+    
+    cartBloc = context.read<CartBloc>();
+    cartBloc.add(FetchCartItemEvent());
 
     super.initState();
   }

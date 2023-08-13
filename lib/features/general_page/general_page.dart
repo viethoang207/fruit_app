@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_example/features/cart/cart_page.dart';
+import 'package:training_example/features/cart/presentation/cart_page.dart';
 import 'package:training_example/features/home/presentation/home_page.dart';
 import 'package:training_example/features/search/search_page.dart';
 import 'package:training_example/features/setting/setting_page.dart';
@@ -17,6 +17,7 @@ class GeneralPageState extends State<GeneralPage> {
   late int _selectedPageIndex;
   late List<Widget> _pages;
   late PageController _pageController;
+  int cartItems = 0;
 
   @override
   void initState() {

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:training_example/models/product/bloc/product_event.dart';
-import 'package:training_example/models/product/bloc/product_state.dart';
+import 'package:training_example/features/home/bloc/product_bloc/product_event.dart';
+import 'package:training_example/features/home/bloc/product_bloc/product_state.dart';
 import 'package:training_example/repositories/product_repository.dart';
 
 @singleton

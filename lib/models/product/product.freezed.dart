@@ -224,33 +224,6 @@ class _$_Product extends _Product {
     return EqualUnmodifiableListView(_images);
   }
 
-  @override
-  String toString() {
-    return 'Product(id: $id, name: $name, category: $category, title: $title, description: $description, unit: $unit, dolar: $dolar, images: $images)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Product &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.unit, unit) || other.unit == unit) &&
-            (identical(other.dolar, dolar) || other.dolar == dolar) &&
-            const DeepCollectionEquality().equals(other._images, _images));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, name, category, title,
-      description, unit, dolar, const DeepCollectionEquality().hash(_images));
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
