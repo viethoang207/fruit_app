@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:training_example/features/cart/presentation/cart_page.dart';
 import 'package:training_example/features/home/presentation/home_page.dart';
-import 'package:training_example/features/search/search_page.dart';
+import 'package:training_example/features/search/presentation/search_page.dart';
 import 'package:training_example/features/setting/setting_page.dart';
 
 import '../home/widgets/icon_with_number_widget.dart';

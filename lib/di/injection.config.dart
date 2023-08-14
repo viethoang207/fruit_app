@@ -12,16 +12,17 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:training_example/features/authentication/blocs/auth_bloc.dart'
-    as _i7;
-import 'package:training_example/features/cart/bloc/cart_bloc.dart' as _i8;
+    as _i8;
+import 'package:training_example/features/cart/bloc/cart_bloc.dart' as _i9;
 import 'package:training_example/features/home/bloc/product_bloc/product_bloc.dart'
-    as _i9;
-import 'package:training_example/features/home/bloc/user_info_bloc/user_info_bloc.dart'
     as _i10;
+import 'package:training_example/features/home/bloc/user_info_bloc/user_info_bloc.dart'
+    as _i11;
+import 'package:training_example/features/search/bloc/search_bloc.dart' as _i6;
 import 'package:training_example/repositories/auth_repository.dart' as _i3;
 import 'package:training_example/repositories/cart_repository.dart' as _i4;
 import 'package:training_example/repositories/product_repository.dart' as _i5;
-import 'package:training_example/repositories/user_repository.dart' as _i6;
+import 'package:training_example/repositories/user_repository.dart' as _i7;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -37,15 +38,17 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i3.AuthRepository>(_i3.AuthRepository());
     gh.singleton<_i4.CartRepository>(_i4.CartRepository());
     gh.singleton<_i5.ProductRepository>(_i5.ProductRepository());
-    gh.singleton<_i6.UserRepository>(_i6.UserRepository());
-    gh.singleton<_i7.AuthBloc>(
-        _i7.AuthBloc(authRepository: gh<_i3.AuthRepository>()));
-    gh.singleton<_i8.CartBloc>(
-        _i8.CartBloc(cartRepo: gh<_i4.CartRepository>()));
-    gh.singleton<_i9.ProductBloc>(
-        _i9.ProductBloc(repository: gh<_i5.ProductRepository>()));
-    gh.singleton<_i10.UserInfoBloc>(
-        _i10.UserInfoBloc(repository: gh<_i6.UserRepository>()));
+    gh.singleton<_i6.SearchBloc>(
+        _i6.SearchBloc(repository: gh<_i5.ProductRepository>()));
+    gh.singleton<_i7.UserRepository>(_i7.UserRepository());
+    gh.singleton<_i8.AuthBloc>(
+        _i8.AuthBloc(authRepository: gh<_i3.AuthRepository>()));
+    gh.singleton<_i9.CartBloc>(
+        _i9.CartBloc(cartRepo: gh<_i4.CartRepository>()));
+    gh.singleton<_i10.ProductBloc>(
+        _i10.ProductBloc(repository: gh<_i5.ProductRepository>()));
+    gh.singleton<_i11.UserInfoBloc>(
+        _i11.UserInfoBloc(repository: gh<_i7.UserRepository>()));
     return this;
   }
 }
