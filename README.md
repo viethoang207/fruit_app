@@ -23,3 +23,9 @@ A Flutter app about Fruit orders for training purposes 🔥
 
 ## Detail screen
 <img src="https://github.com/viethoang207/fruit_app/assets/51428409/df5bd1c6-8752-4df6-82d6-bd144a491fc1" alt="IMG_1987" style="width:200px;">!
+
+## Cart
+<img src="https://github.com/viethoang207/fruit_app/assets/51428409/663ed9eb-9623-49b8-8122-fc4f057b1bba" alt="IMG_1987" style="width:200px;">!
+
+## Search products
+<img src="https://github.com/viethoang207/fruit_app/assets/51428409/e2d268cc-280b-4b24-95ba-722c20d9fb91" alt="IMG_1987" style="width:200px;">!
