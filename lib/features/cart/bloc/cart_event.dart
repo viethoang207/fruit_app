@@ -20,6 +20,14 @@ class AddCartItemEvent extends CartEvent{
   });
 }
 
+class RemoveCartItemEvent extends CartEvent{
+  final String productId;
+
+  RemoveCartItemEvent({
+    required this.productId,
+  });
+}
+
 class UpdateQuantityEvent extends CartEvent{
   final String productId;
   final int quantity;

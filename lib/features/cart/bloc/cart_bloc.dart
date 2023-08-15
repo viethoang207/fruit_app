@@ -39,5 +39,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           productId: event.productId,
           isIncrease: event.isIncrease);
     });
+
+    on<RemoveCartItemEvent>((event, state) async {
+      bool rs = await cartRepo.removeCartItem(productId: event.productId);
+      if (!rs) {
+        emit(RemovedCartItemErrorState(
+            error: 'Can not find item in Cart or something went wrong'));
+      }
+    });
   }
 }

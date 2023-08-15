@@ -45,4 +45,21 @@ class UpdateQuantityErrorState extends CartState {
     required this.error,
   });
 }
+
 class UpdatedQuantityState extends CartState {}
+
+class RemovedCartItemState extends CartState {
+  final String productId;
+
+  RemovedCartItemState({
+    required this.productId,
+  });
+}
+
+class RemovedCartItemErrorState extends CartState {
+  final String error;
+
+  RemovedCartItemErrorState({
+    required this.error,
+  });
+}

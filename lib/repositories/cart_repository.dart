@@ -100,4 +100,17 @@ class CartRepository {
       return false;
     }
   }
+
+  Future<bool> removeCartItem({required String productId}) async {
+    var querySnapshot = await db.collection('Cart')
+        .where('username', isEqualTo: currentUser)
+        .where('id', isEqualTo: productId).get();
+    if (querySnapshot.size != 0) {
+      for (QueryDocumentSnapshot snapshot in querySnapshot.docs) {
+        await snapshot.reference.delete();
+      }
+      return true;
+    }
+    return false;
+  }
 }
