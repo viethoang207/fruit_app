@@ -35,6 +35,8 @@ class AuthRepository {
             username: email,
             name: email,
             age: 0,
+            address: '',
+            phone: '',
             imageURL: Constants.defaultImageUrl));
     return Constants.loginSuccess;
   }

@@ -12,6 +12,8 @@ class UserInfo with _$UserInfo {
     @JsonKey(name: 'name') required String name,
     @JsonKey(name: 'age') required int age,
     @JsonKey(name: 'imageURL') String? imageURL,
+    @JsonKey(name: 'address') String? address,
+    @JsonKey(name: 'phone') String? phone,
   }) = _UserInfo;
 
   factory UserInfo.fromJson(Map<String, Object?> json) =>
