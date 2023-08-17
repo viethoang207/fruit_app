@@ -8,6 +8,7 @@ class Assets {
   static const String assetsHelloFruit = 'assets/hello_fruit.png';
   static const String assetsImageDefault = 'assets/image_default.png';
   static const String assetsKitten = 'assets/kitten.png';
+  static const String assetsLogo = 'assets/logo.png';
   static const String assetsOrderAnimated = 'assets/order_animated.json';
   static const String assetsSearching = 'assets/searching.png';
   static const String assetsShipping = 'assets/shipping.json';

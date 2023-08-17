@@ -7,7 +7,7 @@ import 'package:training_example/models/product/product.dart';
 @singleton
 class CartRepository {
   final FirebaseFirestore db = FirebaseFirestore.instance;
-  String currentUser = FirebaseAuth.instance.currentUser!.email!;
+  String? currentUser = FirebaseAuth.instance.currentUser?.email;
 
   Future<List<CartItem>> getCartItems() async {
     List<CartItem> cartItems = [];
