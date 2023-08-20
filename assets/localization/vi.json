@@ -1,0 +1,14 @@
+{
+  "language": "Ngôn ngữ",
+  "mainTitle": "Khám phá các loại rau và hoa quả theo mùa",
+  "signIn": "Đăng nhập",
+  "email": "Email",
+  "password": "Mật khẩu",
+  "confirmPW": "Xác nhận mật khẩu",
+  "createAccount": "Tạo tài khoản",
+  "or": "hoặc",
+  "invalidEmail": "Email không hợp lệ",
+  "invalidPW": "Mật khẩu không hợp lệ",
+  "pwNotMatch": "Mật khẩu xác nhận không trùng nhau",
+  "fruit": "Quả"
+}

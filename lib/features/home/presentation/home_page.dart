@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +10,7 @@ import 'package:training_example/generated/assets.dart';
 import 'package:training_example/features/home/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:training_example/models/user_info/user.dart' as user_model;
 import '../../../constants/fonts.dart';
+import '../../../translations/locale_keys.g.dart';
 import '../../cart/bloc/cart_bloc.dart';
 import '../bloc/product_bloc/product_bloc.dart';
 import '../bloc/product_bloc/product_event.dart';
@@ -113,9 +115,9 @@ class _HomePageState extends State<HomePage>
                 right: MediaQuery.of(context).size.width / 4,
                 left: 10.0,
                 top: 35.0),
-            child: const Text(
-              'Discover Seasonal Fruits and Vegetables',
-              style: TextStyle(
+            child: Text(
+              LocaleKeys.mainTitle.tr(),
+              style: const TextStyle(
                 fontSize: 30,
                 fontFamily: Fonts.muktaMedium,
                 height: 1.4,

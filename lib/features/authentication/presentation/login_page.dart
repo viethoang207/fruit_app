@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_example/generated/assets.dart';
+import 'package:training_example/translations/locale_keys.g.dart';
 import 'package:training_example/utils/snackbar_hepler.dart';
 import 'package:training_example/utils/string_helper.dart';
 import 'package:training_example/features/authentication/presentation/sign_up_page.dart';
@@ -71,9 +73,9 @@ class _LoginPageState extends State<LoginPage> {
                       width: 300,
                     ),
                     const SizedBox(height: 50),
-                    const Text(
-                      'Sign In',
-                      style: TextStyle(
+                    Text(
+                      LocaleKeys.signIn.tr(),
+                      style: const TextStyle(
                           fontSize: 40,
                           color: Colors.grey,
                         fontFamily: Fonts.muktaBold
@@ -91,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                               keyboardType: TextInputType.emailAddress,
                               controller: _usernameController,
                               decoration: InputDecoration(
-                                labelText: 'Email',
+                                labelText: LocaleKeys.email.tr(),
                                 prefixIcon: const Icon(Icons.email_outlined),
                                 labelStyle: const TextStyle(fontFamily: Fonts.muktaMedium),
                                 border: OutlineInputBorder(
@@ -113,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                                   }),
                                 ),
                                 prefixIcon: const Icon(Icons.key_outlined),
-                                labelText: 'Password',
+                                labelText: LocaleKeys.password.tr(),
                                 labelStyle: const TextStyle(fontFamily: Fonts.muktaMedium),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
@@ -140,9 +142,9 @@ class _LoginPageState extends State<LoginPage> {
                           )),
                     ),
                     const SizedBox(height: 30),
-                    const Text(
-                        'or',
-                      style: TextStyle(
+                    Text(
+                        LocaleKeys.or.tr(),
+                      style: const TextStyle(
                         fontFamily: Fonts.muktaMedium,
                         fontSize: 18,
                         color: Colors.grey
@@ -157,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                         ));
                       },
                       child: Text(
-                        'Create new account',
+                        LocaleKeys.createAccount.tr(),
                         style: TextStyle(
                             fontFamily: Fonts.muktaMedium,
                             fontSize: 18,
@@ -178,14 +180,14 @@ class _LoginPageState extends State<LoginPage> {
   // Form field validators
   String? _validateUsername(String? value) {
     if (value == null || value.isEmpty || value.length < 8 || !StringHelper.isEmailFormat(value)) {
-      return 'Email is invalid';
+      return LocaleKeys.invalidEmail.tr();
     }
     return null;
   }
 
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty || value.length < 8) {
-      return 'Password is invalid';
+      return LocaleKeys.invalidPW.tr();
     }
     return null;
   }

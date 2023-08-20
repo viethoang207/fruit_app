@@ -1,0 +1,14 @@
+{
+  "language": "Language",
+  "mainTitle": "Discover Seasonal Fruits and Vegetables",
+  "signIn": "Sign In",
+  "email": "Email",
+  "password": "Password",
+  "confirmPW": "Confirm Password",
+  "createAccount": "Create your account",
+  "or": "or",
+  "invalidEmail": "Email is invalid",
+  "invalidPW": "Password is invalid",
+  "pwNotMatch": "The password you entered do not match",
+  "fruit": "Fruit"
+}

@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_example/generated/assets.dart';
 import 'package:training_example/utils/snackbar_hepler.dart';
 import '../../../constants/fonts.dart';
 import '../../../di/injection.dart';
+import '../../../translations/locale_keys.g.dart';
 import '../../../utils/string_helper.dart';
 import '../blocs/auth_bloc.dart';
 
@@ -83,9 +85,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             width: 300,
                           ),
                           const SizedBox(height: 50),
-                          const Text(
-                            'Create your account',
-                            style: TextStyle(
+                          Text(
+                            LocaleKeys.createAccount.tr(),
+                            style: const TextStyle(
                                 fontSize: 40,
                                 color: Colors.grey,
                                 fontFamily: Fonts.muktaBold),
@@ -103,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     keyboardType: TextInputType.emailAddress,
                                     controller: _usernameController,
                                     decoration: InputDecoration(
-                                      labelText: 'Email',
+                                      labelText: LocaleKeys.email.tr(),
                                       prefixIcon:
                                           const Icon(Icons.email_outlined),
                                       labelStyle: const TextStyle(
@@ -123,7 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     controller: _passwordController,
                                     decoration: InputDecoration(
                                       prefixIcon: const Icon(Icons.key_outlined),
-                                      labelText: 'Password',
+                                      labelText: LocaleKeys.password.tr(),
                                       labelStyle: const TextStyle(
                                           fontFamily: Fonts.muktaMedium),
                                       border: OutlineInputBorder(
@@ -143,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     decoration: InputDecoration(
                                       prefixIcon: const Icon(
                                           Icons.confirmation_num_outlined),
-                                      labelText: 'Confirm password',
+                                      labelText: LocaleKeys.confirmPW.tr(),
                                       labelStyle: const TextStyle(
                                           fontFamily: Fonts.muktaMedium),
                                       border: OutlineInputBorder(
@@ -182,14 +184,14 @@ class _SignUpPageState extends State<SignUpPage> {
   // Form field validators
   String? _validateUsername(String? value) {
     if (value == null || value.isEmpty || value.length < 8 || !StringHelper.isEmailFormat(value)) {
-      return 'Email is invalid';
+      return LocaleKeys.invalidEmail.tr();
     }
     return null;
   }
 
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty || value.length < 8) {
-      return 'Password is invalid';
+      return LocaleKeys.invalidPW.tr();
     }
     return null;
   }

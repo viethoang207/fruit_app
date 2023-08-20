@@ -14,5 +14,7 @@ class Assets {
   static const String assetsShipping = 'assets/shipping.json';
   static const String assetsVarietyFruits = 'assets/variety_fruits.json';
   static const String fruitAppAssetsImageDefault = 'assets/image_default.jpeg';
+  static const String localizationEn = 'assets/localization/en.json';
+  static const String localizationVi = 'assets/localization/vi.json';
 
 }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,15 @@ import 'package:training_example/features/home/bloc/user_info_bloc/user_info_blo
 import 'package:training_example/features/search/bloc/search_bloc.dart';
 import 'package:training_example/routing/app_router.dart';
 import 'package:training_example/features/splash/introduction_page.dart';
+import 'package:training_example/translations/codegen_loader.g.dart';
 
 import 'constants/fonts.dart';
 import 'features/home/bloc/product_bloc/product_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
   await Firebase.initializeApp();
 
   configureDependencies();
@@ -28,10 +32,19 @@ Future<void> main() async {
     FirebaseAuth.instance.signOut();
   }
 
-  runApp(MaterialApp(
-      theme: ThemeData(fontFamily: Fonts.muktaRegular),
-      debugShowCheckedModeBanner: false,
-      home: isFirstTime ? const IntroductionPage() : const MyApp()));
+  runApp(EasyLocalization(
+    supportedLocales: const [
+      Locale('en'),
+      Locale('vi',)
+    ],
+    path: 'assets/localization',
+    fallbackLocale: const Locale('vi'),
+    assetLoader: const CodegenLoader(),
+    child: MaterialApp(
+        theme: ThemeData(fontFamily: Fonts.muktaRegular),
+        debugShowCheckedModeBanner: false,
+        home: isFirstTime ? const IntroductionPage() : const MyApp()),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -39,41 +52,47 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => getIt.get<UserInfoBloc>(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt.get<UserInfoBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<AuthBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<ProductBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<CartBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<SearchBloc>(),
+          )
+        ],
+        child: StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.active:
+                if (snapshot.hasData) {
+                  return MaterialApp.router(
+                      debugShowCheckedModeBanner: false, routerConfig: router);
+                } else {
+                  return const LoginPage();
+                }
+              default:
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+            }
+          },
         ),
-        BlocProvider(
-          create: (context) => getIt.get<AuthBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt.get<ProductBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt.get<CartBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt.get<SearchBloc>(),
-        )
-      ],
-      child: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.active:
-              if (snapshot.hasData) {
-                return MaterialApp.router(
-                    debugShowCheckedModeBanner: false, routerConfig: router);
-              } else {
-                return const LoginPage();
-              }
-            default:
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-          }
-        },
       ),
     );
   }
