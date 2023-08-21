@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:training_example/features/cart/presentation/cart_page.dart';
 import 'package:training_example/features/home/presentation/home_page.dart';
 import 'package:training_example/features/search/presentation/search_page.dart';
 import 'package:training_example/features/setting/setting_page.dart';
 
+import '../../translations/locale_keys.g.dart';
 import '../home/widgets/icon_with_number_widget.dart';
 
 class GeneralPage extends StatefulWidget {
@@ -35,24 +37,24 @@ class GeneralPageState extends State<GeneralPage> {
         elevation: 0,
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: Colors.black54,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded, size: 30),
-              label: 'Home',
-              backgroundColor: Color.fromARGB(255, 255, 255, 255)),
+              icon: const Icon(Icons.home_rounded, size: 30),
+              label: LocaleKeys.home.tr(),
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255)),
           BottomNavigationBarItem(
-              icon: BadgeIcon(
+              icon: const BadgeIcon(
                   amount: 5, icon: Icon(Icons.shopping_cart_outlined)),
-              label: 'Cart',
-              backgroundColor: Color.fromARGB(255, 255, 255, 255)),
+              label: LocaleKeys.cart.tr(),
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255)),
           BottomNavigationBarItem(
-              icon: Icon(Icons.search_rounded, size: 30),
-              label: 'Search',
-              backgroundColor: Color.fromARGB(255, 255, 255, 255)),
+              icon: const Icon(Icons.search_rounded, size: 30),
+              label: LocaleKeys.search.tr(),
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255)),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person, size: 30),
-              label: 'Settings',
-              backgroundColor: Color.fromARGB(255, 255, 255, 255)),
+              icon: const Icon(Icons.person, size: 30),
+              label: LocaleKeys.settings.tr(),
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255)),
         ],
         currentIndex: _selectedPageIndex,
         onTap: (int idx) => _onItemTapped(idx, context),

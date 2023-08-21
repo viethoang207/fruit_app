@@ -1,13 +1,14 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:training_example/di/injection.dart';
 import 'package:training_example/features/search/bloc/search_bloc.dart';
 import 'package:training_example/features/search/bloc/search_event.dart';
 
 import '../../../generated/assets.dart';
+import '../../../translations/locale_keys.g.dart';
 import '../../home/widgets/fruit_item.dart';
 import '../bloc/search_state.dart';
 
@@ -42,8 +43,8 @@ class _SearchPageState extends State<SearchPage> {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          'Search',
+        title: Text(
+          LocaleKeys.search.tr(),
         ),
       ),
       body: SafeArea(
@@ -72,8 +73,8 @@ class _SearchPageState extends State<SearchPage> {
                             setState(() {});
                             _startSearchTimer(text);
                           },
-                          decoration: const InputDecoration(
-                            hintText: 'What do you want to buy?',
+                          decoration: InputDecoration(
+                            hintText: LocaleKeys.searchHint.tr(),
                             border: InputBorder.none,
                           ),
                         ),
@@ -86,18 +87,18 @@ class _SearchPageState extends State<SearchPage> {
                   builder: (context, state) {
                     if (state is SearchResultState) {
                       if (state.result.isEmpty) {
-                        return const Column(
+                        return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image(
+                            const Image(
                               width: 180,
                               height: 180,
                               image: AssetImage(
                                 Assets.assetsKitten
                               ),
                             ),
-                            SizedBox(height: 20),
-                            Text('No item has matched your keyword')
+                            const SizedBox(height: 20),
+                            Text(LocaleKeys.noItemMatched.tr())
                           ],
                         );
                       } else {

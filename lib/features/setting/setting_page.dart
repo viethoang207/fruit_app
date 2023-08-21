@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../di/injection.dart';
 import '../../generated/assets.dart';
+import '../../translations/locale_keys.g.dart';
 import '../authentication/blocs/auth_bloc.dart';
 
 class SettingPage extends StatefulWidget {
@@ -24,7 +26,7 @@ class _SettingPageState extends State<SettingPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(LocaleKeys.settings.tr()),
         elevation: 0,
       ),
       body: SafeArea(
@@ -66,11 +68,11 @@ class _SettingPageState extends State<SettingPage> {
               Container(
                 width: double.infinity,
                 color: const Color.fromRGBO(246, 246, 246, 1),
-                child: const Padding(
-                  padding: EdgeInsets.all(10.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'ORDER',
-                    style: TextStyle(
+                    LocaleKeys.settings.tr().toUpperCase(),
+                    style: const TextStyle(
                         fontFamily: 'Mukta-Bold',
                         letterSpacing: 2,
                         fontSize: 18,
@@ -85,7 +87,7 @@ class _SettingPageState extends State<SettingPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Waiting', style: TextStyle(color: Colors.green)),
+                      Text(LocaleKeys.waiting.tr(), style: const TextStyle(color: Colors.green)),
                       Row(
                         children: [
                           Container(
@@ -111,7 +113,7 @@ class _SettingPageState extends State<SettingPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Confirmed', style: TextStyle(color: Colors.blue)),
+                      Text(LocaleKeys.confirmed.tr(), style: const TextStyle(color: Colors.blue)),
                       Row(
                         children: [
                           Container(
@@ -137,7 +139,7 @@ class _SettingPageState extends State<SettingPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Canceled', style: TextStyle(color: Colors.red)),
+                      Text(LocaleKeys.canceled.tr(), style: const TextStyle(color: Colors.red)),
                       Row(
                         children: [
                           Container(
@@ -159,11 +161,11 @@ class _SettingPageState extends State<SettingPage> {
               Container(
                 width: double.infinity,
                 color: const Color.fromRGBO(246, 246, 246, 1),
-                child: const Padding(
-                  padding: EdgeInsets.all(10.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'PROFILE',
-                    style: TextStyle(
+                    LocaleKeys.profile.tr().toUpperCase(),
+                    style: const TextStyle(
                         fontFamily: 'Mukta-Bold',
                         letterSpacing: 2,
                         fontSize: 18,
@@ -171,15 +173,15 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Name'),
-                      Row(
+                      Text(LocaleKeys.name.tr()),
+                      const Row(
                         children: [
                           SizedBox(
                             width: 160,
@@ -196,15 +198,15 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Address'),
-                      Row(
+                      Text(LocaleKeys.address.tr()),
+                      const Row(
                         children: [
                           SizedBox(
                             width: 160,
@@ -221,15 +223,15 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Phone'),
-                      Row(
+                      Text(LocaleKeys.phone.tr()),
+                      const Row(
                         children: [
                           SizedBox(
                             width: 160,
@@ -249,11 +251,11 @@ class _SettingPageState extends State<SettingPage> {
               Container(
                 width: double.infinity,
                 color: const Color.fromRGBO(246, 246, 246, 1),
-                child: const Padding(
-                  padding: EdgeInsets.all(10.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'PREFERENCES',
-                    style: TextStyle(
+                    LocaleKeys.preferences.tr().toUpperCase(),
+                    style: const TextStyle(
                         fontFamily: 'Mukta-Bold',
                         letterSpacing: 2,
                         fontSize: 18,
@@ -268,11 +270,11 @@ class _SettingPageState extends State<SettingPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                      Row(
                         children: [
-                          Icon(Icons.public_rounded),
-                          SizedBox(width: 10),
-                          Text('Language'),
+                          const Icon(Icons.public_rounded),
+                          const SizedBox(width: 10),
+                          Text(LocaleKeys.language.tr()),
                         ],
                       ),
                       Row(
@@ -301,11 +303,11 @@ class _SettingPageState extends State<SettingPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                      Row(
                         children: [
-                          Icon(Icons.nights_stay_rounded),
-                          SizedBox(width: 10),
-                          Text('Dark mode'),
+                          const Icon(Icons.nights_stay_rounded),
+                          const SizedBox(width: 10),
+                          Text(LocaleKeys.darkMode.tr()),
                         ],
                       ),
                       Switch.adaptive(
@@ -324,10 +326,10 @@ class _SettingPageState extends State<SettingPage> {
                   color: Colors.red,
                   height: 45,
                   width: double.infinity,
-                  child: const Align(
+                  child: Align(
                       alignment: Alignment.center,
-                      child: Text('Log out',
-                          style: TextStyle(color: Colors.white, fontSize: 18))),
+                      child: Text(LocaleKeys.logout.tr(),
+                          style: const TextStyle(color: Colors.white, fontSize: 18))),
                 ),
               )
             ],

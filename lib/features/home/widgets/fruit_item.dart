@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:training_example/models/product/product.dart';
 
 import '../../../constants/fonts.dart';
 import '../../../generated/assets.dart';
+import '../../../translations/locale_keys.g.dart';
 
 class FruitItem extends StatelessWidget {
   final Product item;
@@ -73,9 +75,9 @@ class FruitItem extends StatelessWidget {
                               fontSize: 25,
                               fontFamily: Fonts.muktaBold),
                         ),
-                        const TextSpan(
-                          text: '\tea',
-                          style: TextStyle(
+                        TextSpan(
+                          text: '\t${LocaleKeys.ea.tr()}',
+                          style: const TextStyle(
                               color: Colors.black87,
                               fontSize: 16,
                               fontFamily: Fonts.muktaMedium),

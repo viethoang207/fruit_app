@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_example/features/cart/bloc/cart_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:training_example/features/cart/bloc/cart_event.dart';
 import 'package:training_example/features/cart/widgets/cart_item_widget.dart';
 import 'package:training_example/models/cart_item/cart_item.dart';
 
+import '../../../translations/locale_keys.g.dart';
 import '../bloc/cart_state.dart';
 
 class CartPage extends StatefulWidget {
@@ -32,9 +34,9 @@ class _CartPageState extends State<CartPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          'Cart',
-          style: TextStyle(color: Colors.black),
+        title: Text(
+          LocaleKeys.cart.tr(),
+          style: const TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.green.shade300,
         centerTitle: true,
@@ -47,9 +49,9 @@ class _CartPageState extends State<CartPage> {
               child:
                   BlocBuilder<CartBloc, CartState>(builder: (context, state) {
                 if (state is CartErrorState) {
-                  return const Center(
+                  return Center(
                     child:
-                        Text('Something went wrong\nPlease try again later.'),
+                        Text(LocaleKeys.error1.tr()),
                   );
                 } else if (state is CartLoadedState) {
                   return ListView.builder(
@@ -89,9 +91,9 @@ class _CartPageState extends State<CartPage> {
                   );
                 } else if (state is RemovedCartItemErrorState) {
                   return AlertDialog(
-                    title: const Text('Error'),
-                    content: const Text(
-                        'Something went wrong. Please try again later'),
+                    title: Text(LocaleKeys.error.tr()),
+                    content: Text(
+                        LocaleKeys.error1.tr()),
                     actions: [
                       TextButton(
                           child: const Text('OK'),
@@ -116,9 +118,9 @@ class _CartPageState extends State<CartPage> {
                       RichText(
                         text: TextSpan(
                           children: <TextSpan>[
-                            const TextSpan(
-                                text: 'Total Price: ',
-                                style: TextStyle(
+                            TextSpan(
+                                text: '${LocaleKeys.totalPrice.tr()} ',
+                                style: const TextStyle(
                                     fontSize: 16, color: Colors.black54)),
                             TextSpan(
                                 text: '\$${totalPrice.toStringAsFixed(2)}',
@@ -138,7 +140,7 @@ class _CartPageState extends State<CartPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            'Buy (${choseItems.length})',
+                            '${LocaleKeys.buy.tr()} (${choseItems.length})',
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),

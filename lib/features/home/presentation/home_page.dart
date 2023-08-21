@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage>
     userInfoBloc.add(FetchCurrentUserInfoEvent());
 
     productBloc = context.read<ProductBloc>();
-    productBloc.add(FetchProductsEvent(category: Constants.categories[0]));
+    productBloc.add(FetchProductsEvent(category: Constants.generalCategories[0]));
     
     cartBloc = context.read<CartBloc>();
     cartBloc.add(FetchCartItemEvent());
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage>
                 setState(() {
                   currentPickedCategory = index!;
                   productBloc.add(FetchProductsEvent(
-                      category: Constants.categories[index]));
+                      category: Constants.generalCategories[index]));
                 });
               }),
           BlocBuilder<ProductBloc, ProductState>(
