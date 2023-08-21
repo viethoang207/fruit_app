@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage>
   late UserInfoBloc userInfoBloc;
   late user_model.UserInfo userInfo;
   late CartBloc cartBloc;
-  final categories = Constants.categories;
   bool isImageError = false;
   late ProductBloc productBloc;
 
@@ -125,7 +124,6 @@ class _HomePageState extends State<HomePage>
             ),
           ),
           HorizontalCategory(
-              categories: Constants.categories,
               initialIndex: currentPickedCategory,
               onCategoryChange: (index) {
                 setState(() {

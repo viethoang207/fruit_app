@@ -24,13 +24,4 @@ class Constants {
     'FRIDGE',
     'SEAFOOD',
   ];
-
-  static List<String> categories = [
-    LocaleKeys.organic.tr(),
-    LocaleKeys.fruit.tr(),
-    LocaleKeys.veggies.tr(),
-    LocaleKeys.grocery.tr(),
-    LocaleKeys.fridge.tr(),
-    LocaleKeys.seafood.tr(),
-  ];
 }
