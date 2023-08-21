@@ -22,10 +22,14 @@ A Flutter app about Fruit orders for training purposes 🔥
 
 
 ## Detail screen
-<img src="https://github.com/viethoang207/fruit_app/assets/51428409/df5bd1c6-8752-4df6-82d6-bd144a491fc1" alt="IMG_1987" style="width:200px;">!
+<img src="https://github.com/viethoang207/fruit_app/assets/51428409/df5bd1c6-8752-4df6-82d6-bd144a491fc1" alt="IMG_1987" style="width:200px;">
 
 ## Cart
-<img src="https://github.com/viethoang207/fruit_app/assets/51428409/d36b2059-bf0c-4f91-b0be-2996d9a8434d" alt="IMG_1987" style="width:200px;">!
+<img src="https://github.com/viethoang207/fruit_app/assets/51428409/d36b2059-bf0c-4f91-b0be-2996d9a8434d" alt="IMG_1987" style="width:200px;">
 
 ## Search products
-<img src="https://github.com/viethoang207/fruit_app/assets/51428409/e2d268cc-280b-4b24-95ba-722c20d9fb91" alt="IMG_1987" style="width:200px;">!
+<img src="https://github.com/viethoang207/fruit_app/assets/51428409/e2d268cc-280b-4b24-95ba-722c20d9fb91" alt="IMG_1987" style="width:200px;">
+
+## Settings
+<img src="https://github.com/viethoang207/fruit_app/assets/51428409/07ff0704-8ea4-4632-90b8-1b7253bbd013" alt="IMG_1987" style="width:200px;">
+<img src="https://github.com/viethoang207/fruit_app/assets/51428409/6b74b4d4-ce62-46f3-ae96-4ad7a062fa28" alt="IMG_1987" style="width:200px;">
