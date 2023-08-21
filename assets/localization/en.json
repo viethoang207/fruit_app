@@ -37,5 +37,8 @@
   "phone": "Phone",
   "preferences": "Preferences",
   "darkMode": "Dark mode",
-  "logout": "Log out"
+  "logout": "Log out",
+  "changeLanguage": "Change language",
+  "done": "Done",
+  "changeLanguageOk": "Change language successfully"
 }

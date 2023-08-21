@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import '../../di/injection.dart';
-import '../../generated/assets.dart';
-import '../../translations/locale_keys.g.dart';
-import '../authentication/blocs/auth_bloc.dart';
+import 'package:go_router/go_router.dart';
+import '../../../di/injection.dart';
+import '../../../generated/assets.dart';
+import '../../../translations/locale_keys.g.dart';
+import '../../authentication/blocs/auth_bloc.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -265,33 +266,41 @@ class _SettingPageState extends State<SettingPage> {
               ),
               SizedBox(
                 width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.public_rounded),
-                          const SizedBox(width: 10),
-                          Text(LocaleKeys.language.tr()),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            width: 160,
-                            child: const Text('English',
-                                textAlign: TextAlign.end,
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    overflow: TextOverflow.ellipsis)),
-                          ),
-                          const Icon(Icons.arrow_forward_ios_rounded, size: 20)
-                        ],
-                      )
-                    ],
+                child: InkWell(
+                  onTap: () {
+                    GoRouter.of(context).push('/language');
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(Icons.public_rounded),
+                            const SizedBox(width: 10),
+                            Text(LocaleKeys.language.tr()),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(right: 10),
+                              width: 160,
+                              child: Text(EasyLocalization
+                                  .of(context)
+                                  ?.locale
+                                  .toString() == 'en' ? 'English' : 'Tiếng Việt',
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      overflow: TextOverflow.ellipsis)),
+                            ),
+                            const Icon(Icons.arrow_forward_ios_rounded, size: 20)
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

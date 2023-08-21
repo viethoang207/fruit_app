@@ -53,7 +53,10 @@ class CodegenLoader extends AssetLoader{
   "phone": "Phone",
   "preferences": "Preferences",
   "darkMode": "Dark mode",
-  "logout": "Log out"
+  "logout": "Log out",
+  "changeLanguage": "Change language",
+  "done": "Done",
+  "changeLanguageOk": "Change language successfully"
 };
 static const Map<String,dynamic> vi = {
   "language": "Ngôn ngữ",
@@ -94,7 +97,10 @@ static const Map<String,dynamic> vi = {
   "phone": "Số điện thoại",
   "preferences": "Cá nhân hoá",
   "darkMode": "Chế độ tối",
-  "logout": "Đăng xuất"
+  "logout": "Đăng xuất",
+  "changeLanguage": "Đổi ngôn ngữ",
+  "done": "Xong",
+  "changeLanguageOk": "Thay đổi ngôn ngữ thành công"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "vi": vi};
 }

@@ -40,5 +40,8 @@ abstract class  LocaleKeys {
   static const preferences = 'preferences';
   static const darkMode = 'darkMode';
   static const logout = 'logout';
+  static const changeLanguage = 'changeLanguage';
+  static const done = 'done';
+  static const changeLanguageOk = 'changeLanguageOk';
 
 }

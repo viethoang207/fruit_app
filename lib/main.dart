@@ -38,7 +38,7 @@ Future<void> main() async {
       Locale('vi',)
     ],
     path: 'assets/localization',
-    fallbackLocale: const Locale('vi'),
+    fallbackLocale: const Locale('en'),
     assetLoader: const CodegenLoader(),
     child: MaterialApp(
         theme: ThemeData(fontFamily: Fonts.muktaRegular),

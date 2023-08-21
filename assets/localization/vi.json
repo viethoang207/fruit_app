@@ -37,5 +37,8 @@
   "phone": "Số điện thoại",
   "preferences": "Cá nhân hoá",
   "darkMode": "Chế độ tối",
-  "logout": "Đăng xuất"
+  "logout": "Đăng xuất",
+  "changeLanguage": "Đổi ngôn ngữ",
+  "done": "Xong",
+  "changeLanguageOk": "Thay đổi ngôn ngữ thành công"
 }
