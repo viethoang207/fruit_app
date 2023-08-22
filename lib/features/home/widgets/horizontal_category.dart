@@ -50,7 +50,7 @@ class _HorizontalCategoryState extends State<HorizontalCategory>{
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: Text(
-                  categories[index],
+                  categories[index].toUpperCase(),
                   style: TextStyle(
                       fontFamily: Fonts.muktaSemiBold,
                       fontSize: 20.0,

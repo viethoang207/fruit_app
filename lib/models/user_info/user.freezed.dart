@@ -24,8 +24,6 @@ mixin _$UserInfo {
   String get username => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'age')
-  int get age => throw _privateConstructorUsedError;
   @JsonKey(name: 'imageURL')
   String? get imageURL => throw _privateConstructorUsedError;
   @JsonKey(name: 'address')
@@ -47,7 +45,6 @@ abstract class $UserInfoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'username') String username,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'age') int age,
       @JsonKey(name: 'imageURL') String? imageURL,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone') String? phone});
@@ -68,7 +65,6 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
   $Res call({
     Object? username = null,
     Object? name = null,
-    Object? age = null,
     Object? imageURL = freezed,
     Object? address = freezed,
     Object? phone = freezed,
@@ -82,10 +78,6 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
       imageURL: freezed == imageURL
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
@@ -112,7 +104,6 @@ abstract class _$$_UserInfoCopyWith<$Res> implements $UserInfoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'username') String username,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'age') int age,
       @JsonKey(name: 'imageURL') String? imageURL,
       @JsonKey(name: 'address') String? address,
       @JsonKey(name: 'phone') String? phone});
@@ -131,7 +122,6 @@ class __$$_UserInfoCopyWithImpl<$Res>
   $Res call({
     Object? username = null,
     Object? name = null,
-    Object? age = null,
     Object? imageURL = freezed,
     Object? address = freezed,
     Object? phone = freezed,
@@ -145,10 +135,6 @@ class __$$_UserInfoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
       imageURL: freezed == imageURL
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
@@ -171,7 +157,6 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
   const _$_UserInfo(
       {@JsonKey(name: 'username') required this.username,
       @JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'age') required this.age,
       @JsonKey(name: 'imageURL') this.imageURL,
       @JsonKey(name: 'address') this.address,
       @JsonKey(name: 'phone') this.phone});
@@ -186,9 +171,6 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
   @JsonKey(name: 'name')
   final String name;
   @override
-  @JsonKey(name: 'age')
-  final int age;
-  @override
   @JsonKey(name: 'imageURL')
   final String? imageURL;
   @override
@@ -200,7 +182,7 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserInfo(username: $username, name: $name, age: $age, imageURL: $imageURL, address: $address, phone: $phone)';
+    return 'UserInfo(username: $username, name: $name, imageURL: $imageURL, address: $address, phone: $phone)';
   }
 
   @override
@@ -210,7 +192,6 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
       ..add(DiagnosticsProperty('type', 'UserInfo'))
       ..add(DiagnosticsProperty('username', username))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('age', age))
       ..add(DiagnosticsProperty('imageURL', imageURL))
       ..add(DiagnosticsProperty('address', address))
       ..add(DiagnosticsProperty('phone', phone));
@@ -224,7 +205,6 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.age, age) || other.age == age) &&
             (identical(other.imageURL, imageURL) ||
                 other.imageURL == imageURL) &&
             (identical(other.address, address) || other.address == address) &&
@@ -234,7 +214,7 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, username, name, age, imageURL, address, phone);
+      Object.hash(runtimeType, username, name, imageURL, address, phone);
 
   @JsonKey(ignore: true)
   @override
@@ -254,7 +234,6 @@ abstract class _UserInfo implements UserInfo {
   const factory _UserInfo(
       {@JsonKey(name: 'username') required final String username,
       @JsonKey(name: 'name') required final String name,
-      @JsonKey(name: 'age') required final int age,
       @JsonKey(name: 'imageURL') final String? imageURL,
       @JsonKey(name: 'address') final String? address,
       @JsonKey(name: 'phone') final String? phone}) = _$_UserInfo;
@@ -267,9 +246,6 @@ abstract class _UserInfo implements UserInfo {
   @override
   @JsonKey(name: 'name')
   String get name;
-  @override
-  @JsonKey(name: 'age')
-  int get age;
   @override
   @JsonKey(name: 'imageURL')
   String? get imageURL;

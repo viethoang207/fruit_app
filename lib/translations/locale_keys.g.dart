@@ -43,5 +43,8 @@ abstract class  LocaleKeys {
   static const changeLanguage = 'changeLanguage';
   static const done = 'done';
   static const changeLanguageOk = 'changeLanguageOk';
+  static const productDetail = 'productDetail';
+  static const addToCart = 'addToCart';
+  static const addToCartNoti = 'addToCartNoti';
 
 }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import 'package:training_example/features/cart/bloc/cart_event.dart';
 import 'package:training_example/models/product/product.dart';
 import 'package:training_example/utils/snackbar_hepler.dart';
 import '../../generated/assets.dart';
+import '../../translations/locale_keys.g.dart';
 import '../cart/bloc/cart_state.dart';
 
 class DetailPage extends StatefulWidget {
@@ -52,13 +54,14 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
+        title: Text(LocaleKeys.productDetail.tr(),
+            style: const TextStyle(color: Colors.black)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                size: 35, color: Colors.grey),
+            icon: const Icon(Icons.arrow_back, size: 35, color: Colors.black),
             onPressed: () {
               GoRouter.of(context).pop();
             },
@@ -75,7 +78,7 @@ class _DetailPageState extends State<DetailPage> {
           } else if (state is AddedCartItemState) {
             SnackBarHelper.showMessage(
                 context: context,
-                message: 'Added to Cart!',
+                message: LocaleKeys.addToCartNoti.tr(),
                 duration: const Duration(milliseconds: 1500));
             setState(() {
               amount = 1;
@@ -98,13 +101,16 @@ class _DetailPageState extends State<DetailPage> {
                       children: imageWidgets,
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 20),
-                    child: SmoothPageIndicator(
-                      effect: const JumpingDotEffect(
-                          dotWidth: 10, dotHeight: 10, verticalOffset: 10),
-                      controller: _pageController,
-                      count: widget.fruitItem.images.length,
+                  Visibility(
+                    visible: widget.fruitItem.images.length > 1,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(vertical: 20),
+                      child: SmoothPageIndicator(
+                        effect: const JumpingDotEffect(
+                            dotWidth: 10, dotHeight: 10, verticalOffset: 10),
+                        controller: _pageController,
+                        count: widget.fruitItem.images.length,
+                      ),
                     ),
                   ),
                   Padding(
@@ -112,13 +118,16 @@ class _DetailPageState extends State<DetailPage> {
                         horizontal: 10.0, vertical: 15.0),
                     child: Column(
                       children: [
-                        Text(
-                          widget.fruitItem.name,
-                          style: TextStyle(
-                              fontFamily: Fonts.muktaSemiBold,
-                              fontSize: 25,
-                              height: 1.3,
-                              color: Colors.green.shade600),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            widget.fruitItem.name,
+                            style: TextStyle(
+                                fontFamily: Fonts.muktaSemiBold,
+                                fontSize: 25,
+                                height: 1.3,
+                                color: Colors.green.shade600),
+                          ),
                         ),
                         const SizedBox(height: 10.0),
                         Row(
@@ -134,9 +143,9 @@ class _DetailPageState extends State<DetailPage> {
                                       fontSize: 40,
                                       fontFamily: Fonts.muktaBold),
                                 ),
-                                const TextSpan(
-                                  text: '\tea',
-                                  style: TextStyle(
+                                TextSpan(
+                                  text: '\t${LocaleKeys.ea.tr()}',
+                                  style: const TextStyle(
                                       color: Colors.black87,
                                       fontSize: 18,
                                       fontFamily: Fonts.muktaMedium),
@@ -218,9 +227,9 @@ class _DetailPageState extends State<DetailPage> {
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(
                                         Colors.red.shade400)),
-                            child: const Text('ADD TO CART',
+                            child: Text(LocaleKeys.addToCart.tr().toUpperCase(),
                                 style:
-                                    TextStyle(fontFamily: Fonts.muktaSemiBold)),
+                                    const TextStyle(fontFamily: Fonts.muktaSemiBold)),
                           ),
                         ),
                         const SizedBox(height: 20.0),

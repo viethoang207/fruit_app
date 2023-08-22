@@ -1,11 +1,8 @@
-import 'package:equatable/equatable.dart';
 import 'package:training_example/models/user_info/user.dart' as user;
 
-abstract class UserInfoState extends Equatable {}
+abstract class UserInfoState{}
 
 class UserInfoLoadingState extends UserInfoState {
-  @override
-  List<Object?> get props => [];
 }
 
 class UserInfoFetchedState extends UserInfoState {
@@ -14,7 +11,4 @@ class UserInfoFetchedState extends UserInfoState {
   UserInfoFetchedState({
     required this.userInfo,
   });
-
-  @override
-  List<Object?> get props => [];
 }

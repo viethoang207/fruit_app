@@ -34,7 +34,6 @@ class AuthRepository {
         user: user.UserInfo(
             username: email,
             name: email,
-            age: 0,
             address: '',
             phone: '',
             imageURL: Constants.defaultImageUrl));
