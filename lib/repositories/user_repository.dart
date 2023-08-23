@@ -16,4 +16,14 @@ class UserRepository {
       return user_model.UserInfo.fromJson(data);
     });
   }
+
+  Future<bool> changeName({required String name}) async {
+    String? username = auth.currentUser?.email;
+    try {
+      await db.collection('User').doc(username).update({'name': name});
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

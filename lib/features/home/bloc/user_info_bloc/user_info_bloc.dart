@@ -13,5 +13,12 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
       var info = await repository.getCurrentUserInfo();
       emit(UserInfoFetchedState(userInfo: info));
     });
+
+    on<ChangeNameEvent>((event, emit) async {
+      var result = await repository.changeName(name: event.name);
+      if (result) {
+        add(FetchCurrentUserInfoEvent());
+      }
+    });
   }
 }

@@ -59,7 +59,11 @@ class CodegenLoader extends AssetLoader{
   "changeLanguageOk": "Change language successfully",
   "productDetail": "Product detail",
   "addToCart": "Add to cart",
-  "addToCartNoti": "Added to cart successfully!"
+  "addToCartNoti": "Added to cart successfully!",
+  "changeName": "Change your name",
+  "invalidName": "Your name is invalid!",
+  "changeNameSuccess": "Change your name successfully!",
+  "changeNameFailed": "Can not change your name now\nPlease try again later"
 };
 static const Map<String,dynamic> vi = {
   "language": "Ngôn ngữ",
@@ -106,7 +110,11 @@ static const Map<String,dynamic> vi = {
   "changeLanguageOk": "Thay đổi ngôn ngữ thành công",
   "productDetail": "Chi tiết sản phẩm",
   "addToCart": "Thêm vào giỏ hàng",
-  "addToCartNoti": "Đã thêm vào giỏ hàng!"
+  "addToCartNoti": "Đã thêm vào giỏ hàng!",
+  "changeName": "Chỉnh sửa tên",
+  "invalidName": "Tên không hợp lệ!",
+  "changeNameSuccess": "Đổi tên thành công!",
+  "changeNameFailed": "Không thể thay đổi tên bây giờ\nVui lòng thử lại sau"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "vi": vi};
 }

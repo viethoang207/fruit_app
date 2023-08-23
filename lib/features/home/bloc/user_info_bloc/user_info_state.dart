@@ -12,3 +12,11 @@ class UserInfoFetchedState extends UserInfoState {
     required this.userInfo,
   });
 }
+
+class ChangeNameSuccessState extends UserInfoState {
+  final String name;
+
+  ChangeNameSuccessState({
+    required this.name,
+  });
+}

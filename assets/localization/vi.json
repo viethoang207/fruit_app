@@ -43,5 +43,9 @@
   "changeLanguageOk": "Thay đổi ngôn ngữ thành công",
   "productDetail": "Chi tiết sản phẩm",
   "addToCart": "Thêm vào giỏ hàng",
-  "addToCartNoti": "Đã thêm vào giỏ hàng!"
+  "addToCartNoti": "Đã thêm vào giỏ hàng!",
+  "changeName": "Chỉnh sửa tên",
+  "invalidName": "Tên không hợp lệ!",
+  "changeNameSuccess": "Đổi tên thành công!",
+  "changeNameFailed": "Không thể thay đổi tên bây giờ\nVui lòng thử lại sau"
 }

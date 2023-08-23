@@ -81,7 +81,7 @@ class _SettingPageState extends State<SettingPage> {
                     );
                   } else {
                     return const Text(
-                      'User is not founded',
+                      '',
                       maxLines: 1,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
@@ -93,35 +93,36 @@ class _SettingPageState extends State<SettingPage> {
               ),
               const SizedBox(height: 15),
               BlocBuilder(
-                bloc: userInfoBloc,
+                  bloc: userInfoBloc,
                   builder: (context, state) {
-                if (state is UserInfoFetchedState) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.email, color: Colors.black54),
-                      const SizedBox(width: 10),
-                      Text(
-                        state.userInfo.username,
-                        style: const TextStyle(
-                            fontSize: 16, color: Colors.black54),
-                      ),
-                    ],
-                  );
-                } else {
-                  return const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.email, color: Colors.black54),
-                      SizedBox(width: 10),
-                      Text(
-                        'email is not founded',
-                        style: TextStyle(fontSize: 16, color: Colors.black54),
-                      ),
-                    ],
-                  );
-                }
-              }),
+                    if (state is UserInfoFetchedState) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.email, color: Colors.black54),
+                          const SizedBox(width: 10),
+                          Text(
+                            state.userInfo.username,
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.black54),
+                          ),
+                        ],
+                      );
+                    } else {
+                      return const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.email, color: Colors.black54),
+                          SizedBox(width: 10),
+                          Text(
+                            '',
+                            style:
+                                TextStyle(fontSize: 16, color: Colors.black54),
+                          ),
+                        ],
+                      );
+                    }
+                  }),
               const SizedBox(height: 30),
               Container(
                 width: double.infinity,
@@ -240,29 +241,38 @@ class _SettingPageState extends State<SettingPage> {
                   if (state is UserInfoFetchedState) {
                     return Column(
                       children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(LocaleKeys.name.tr()),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 160,
-                                      child: Text(state.userInfo.name,
-                                          textAlign: TextAlign.end,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              overflow: TextOverflow.ellipsis)),
-                                    ),
-                                    const Icon(Icons.arrow_forward_ios_rounded,
-                                        size: 20)
-                                  ],
-                                )
-                              ],
+                        InkWell(
+                          onTap: () {
+                            GoRouter.of(context).pushNamed('changeName',
+                                extra: state.userInfo.name);
+                          },
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(LocaleKeys.name.tr()),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 160,
+                                        child: Text(state.userInfo.name,
+                                            textAlign: TextAlign.end,
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                overflow:
+                                                    TextOverflow.ellipsis)),
+                                      ),
+                                      const Icon(
+                                          Icons.arrow_forward_ios_rounded,
+                                          size: 20)
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -311,6 +321,32 @@ class _SettingPageState extends State<SettingPage> {
                                               overflow: TextOverflow.ellipsis)),
                                     ),
                                     const Icon(Icons.arrow_forward_ios_rounded,
+                                        size: 20)
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(LocaleKeys.password.tr()),
+                                const Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 160,
+                                      child: Text('**********',
+                                          textAlign: TextAlign.end,
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              overflow: TextOverflow.ellipsis)),
+                                    ),
+                                    Icon(Icons.arrow_forward_ios_rounded,
                                         size: 20)
                                   ],
                                 )
