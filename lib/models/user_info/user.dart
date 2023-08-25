@@ -11,8 +11,11 @@ class UserInfo with _$UserInfo {
     @JsonKey(name: 'username') required String username,
     @JsonKey(name: 'name') required String name,
     @JsonKey(name: 'imageURL') String? imageURL,
-    @JsonKey(name: 'address') String? address,
-    @JsonKey(name: 'phone') String? phone,
+    @JsonKey(name: 'province') String? province,
+    @JsonKey(name: 'district') String? district,
+    @JsonKey(name: 'commune') String? commune,
+    @JsonKey(name: 'detailAddress') String? detailAddress,
+    @JsonKey(name: 'phone') String? phone
   }) = _UserInfo;
 
   factory UserInfo.fromJson(Map<String, Object?> json) =>

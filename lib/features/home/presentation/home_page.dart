@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:training_example/constants/constants.dart';
+import 'package:training_example/di/injection.dart';
 import 'package:training_example/features/cart/bloc/cart_event.dart';
 import 'package:training_example/features/home/widgets/fruit_item.dart';
 import 'package:training_example/features/home/widgets/horizontal_category.dart';
 import 'package:training_example/generated/assets.dart';
 import 'package:training_example/features/home/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:training_example/models/user_info/user.dart' as user_model;
+import 'package:training_example/repositories/vn_address_repository.dart';
 import '../../../constants/fonts.dart';
 import '../../../translations/locale_keys.g.dart';
 import '../../cart/bloc/cart_bloc.dart';
@@ -32,6 +34,7 @@ class _HomePageState extends State<HomePage>
   late CartBloc cartBloc;
   bool isImageError = false;
   late ProductBloc productBloc;
+  VNAddressRepository addressRepository = getIt.get<VNAddressRepository>();
 
   int currentPickedCategory = 0;
 
@@ -162,7 +165,6 @@ class _HomePageState extends State<HomePage>
                                 onTap: () {
                                   GoRouter.of(context).pushNamed('detail',
                                       extra: state.products[index]);
-
                                 });
                           }),
                     ),

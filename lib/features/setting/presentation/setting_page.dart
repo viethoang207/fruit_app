@@ -276,29 +276,45 @@ class _SettingPageState extends State<SettingPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(LocaleKeys.address.tr()),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 160,
-                                      child: Text(state.userInfo.address!,
-                                          textAlign: TextAlign.end,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              overflow: TextOverflow.ellipsis)),
-                                    ),
-                                    const Icon(Icons.arrow_forward_ios_rounded,
-                                        size: 20)
-                                  ],
-                                )
-                              ],
+                        InkWell(
+                          onTap: () {
+                            GoRouter.of(context)
+                                .pushNamed('changeAddress', extra: {
+                              'province': state.userInfo.province,
+                              'district': state.userInfo.district,
+                              'commune': state.userInfo.commune,
+                              'detailAddress': state.userInfo.detailAddress
+                            });
+                          },
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(LocaleKeys.address.tr()),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 160,
+                                        child: Text(
+                                          state.userInfo.province!.isNotEmpty?
+                                            '${state.userInfo.detailAddress}, ${state.userInfo.commune}, ${state.userInfo.district}, ${state.userInfo.province}' : '',
+                                            textAlign: TextAlign.end,
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                overflow:
+                                                    TextOverflow.ellipsis)),
+                                      ),
+                                      const Icon(
+                                          Icons.arrow_forward_ios_rounded,
+                                          size: 20)
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),

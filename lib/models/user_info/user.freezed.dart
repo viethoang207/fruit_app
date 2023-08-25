@@ -26,8 +26,14 @@ mixin _$UserInfo {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'imageURL')
   String? get imageURL => throw _privateConstructorUsedError;
-  @JsonKey(name: 'address')
-  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'province')
+  String? get province => throw _privateConstructorUsedError;
+  @JsonKey(name: 'district')
+  String? get district => throw _privateConstructorUsedError;
+  @JsonKey(name: 'commune')
+  String? get commune => throw _privateConstructorUsedError;
+  @JsonKey(name: 'detailAddress')
+  String? get detailAddress => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone')
   String? get phone => throw _privateConstructorUsedError;
 
@@ -46,7 +52,10 @@ abstract class $UserInfoCopyWith<$Res> {
       {@JsonKey(name: 'username') String username,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'imageURL') String? imageURL,
-      @JsonKey(name: 'address') String? address,
+      @JsonKey(name: 'province') String? province,
+      @JsonKey(name: 'district') String? district,
+      @JsonKey(name: 'commune') String? commune,
+      @JsonKey(name: 'detailAddress') String? detailAddress,
       @JsonKey(name: 'phone') String? phone});
 }
 
@@ -66,7 +75,10 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
     Object? username = null,
     Object? name = null,
     Object? imageURL = freezed,
-    Object? address = freezed,
+    Object? province = freezed,
+    Object? district = freezed,
+    Object? commune = freezed,
+    Object? detailAddress = freezed,
     Object? phone = freezed,
   }) {
     return _then(_value.copyWith(
@@ -82,9 +94,21 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+      district: freezed == district
+          ? _value.district
+          : district // ignore: cast_nullable_to_non_nullable
+              as String?,
+      commune: freezed == commune
+          ? _value.commune
+          : commune // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailAddress: freezed == detailAddress
+          ? _value.detailAddress
+          : detailAddress // ignore: cast_nullable_to_non_nullable
               as String?,
       phone: freezed == phone
           ? _value.phone
@@ -105,7 +129,10 @@ abstract class _$$_UserInfoCopyWith<$Res> implements $UserInfoCopyWith<$Res> {
       {@JsonKey(name: 'username') String username,
       @JsonKey(name: 'name') String name,
       @JsonKey(name: 'imageURL') String? imageURL,
-      @JsonKey(name: 'address') String? address,
+      @JsonKey(name: 'province') String? province,
+      @JsonKey(name: 'district') String? district,
+      @JsonKey(name: 'commune') String? commune,
+      @JsonKey(name: 'detailAddress') String? detailAddress,
       @JsonKey(name: 'phone') String? phone});
 }
 
@@ -123,7 +150,10 @@ class __$$_UserInfoCopyWithImpl<$Res>
     Object? username = null,
     Object? name = null,
     Object? imageURL = freezed,
-    Object? address = freezed,
+    Object? province = freezed,
+    Object? district = freezed,
+    Object? commune = freezed,
+    Object? detailAddress = freezed,
     Object? phone = freezed,
   }) {
     return _then(_$_UserInfo(
@@ -139,9 +169,21 @@ class __$$_UserInfoCopyWithImpl<$Res>
           ? _value.imageURL
           : imageURL // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+      district: freezed == district
+          ? _value.district
+          : district // ignore: cast_nullable_to_non_nullable
+              as String?,
+      commune: freezed == commune
+          ? _value.commune
+          : commune // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailAddress: freezed == detailAddress
+          ? _value.detailAddress
+          : detailAddress // ignore: cast_nullable_to_non_nullable
               as String?,
       phone: freezed == phone
           ? _value.phone
@@ -158,7 +200,10 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
       {@JsonKey(name: 'username') required this.username,
       @JsonKey(name: 'name') required this.name,
       @JsonKey(name: 'imageURL') this.imageURL,
-      @JsonKey(name: 'address') this.address,
+      @JsonKey(name: 'province') this.province,
+      @JsonKey(name: 'district') this.district,
+      @JsonKey(name: 'commune') this.commune,
+      @JsonKey(name: 'detailAddress') this.detailAddress,
       @JsonKey(name: 'phone') this.phone});
 
   factory _$_UserInfo.fromJson(Map<String, dynamic> json) =>
@@ -174,15 +219,24 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
   @JsonKey(name: 'imageURL')
   final String? imageURL;
   @override
-  @JsonKey(name: 'address')
-  final String? address;
+  @JsonKey(name: 'province')
+  final String? province;
+  @override
+  @JsonKey(name: 'district')
+  final String? district;
+  @override
+  @JsonKey(name: 'commune')
+  final String? commune;
+  @override
+  @JsonKey(name: 'detailAddress')
+  final String? detailAddress;
   @override
   @JsonKey(name: 'phone')
   final String? phone;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserInfo(username: $username, name: $name, imageURL: $imageURL, address: $address, phone: $phone)';
+    return 'UserInfo(username: $username, name: $name, imageURL: $imageURL, province: $province, district: $district, commune: $commune, detailAddress: $detailAddress, phone: $phone)';
   }
 
   @override
@@ -193,7 +247,10 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
       ..add(DiagnosticsProperty('username', username))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('imageURL', imageURL))
-      ..add(DiagnosticsProperty('address', address))
+      ..add(DiagnosticsProperty('province', province))
+      ..add(DiagnosticsProperty('district', district))
+      ..add(DiagnosticsProperty('commune', commune))
+      ..add(DiagnosticsProperty('detailAddress', detailAddress))
       ..add(DiagnosticsProperty('phone', phone));
   }
 
@@ -207,14 +264,20 @@ class _$_UserInfo with DiagnosticableTreeMixin implements _UserInfo {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageURL, imageURL) ||
                 other.imageURL == imageURL) &&
-            (identical(other.address, address) || other.address == address) &&
+            (identical(other.province, province) ||
+                other.province == province) &&
+            (identical(other.district, district) ||
+                other.district == district) &&
+            (identical(other.commune, commune) || other.commune == commune) &&
+            (identical(other.detailAddress, detailAddress) ||
+                other.detailAddress == detailAddress) &&
             (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, username, name, imageURL, address, phone);
+  int get hashCode => Object.hash(runtimeType, username, name, imageURL,
+      province, district, commune, detailAddress, phone);
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +298,10 @@ abstract class _UserInfo implements UserInfo {
       {@JsonKey(name: 'username') required final String username,
       @JsonKey(name: 'name') required final String name,
       @JsonKey(name: 'imageURL') final String? imageURL,
-      @JsonKey(name: 'address') final String? address,
+      @JsonKey(name: 'province') final String? province,
+      @JsonKey(name: 'district') final String? district,
+      @JsonKey(name: 'commune') final String? commune,
+      @JsonKey(name: 'detailAddress') final String? detailAddress,
       @JsonKey(name: 'phone') final String? phone}) = _$_UserInfo;
 
   factory _UserInfo.fromJson(Map<String, dynamic> json) = _$_UserInfo.fromJson;
@@ -250,8 +316,17 @@ abstract class _UserInfo implements UserInfo {
   @JsonKey(name: 'imageURL')
   String? get imageURL;
   @override
-  @JsonKey(name: 'address')
-  String? get address;
+  @JsonKey(name: 'province')
+  String? get province;
+  @override
+  @JsonKey(name: 'district')
+  String? get district;
+  @override
+  @JsonKey(name: 'commune')
+  String? get commune;
+  @override
+  @JsonKey(name: 'detailAddress')
+  String? get detailAddress;
   @override
   @JsonKey(name: 'phone')
   String? get phone;

@@ -20,5 +20,17 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
         add(FetchCurrentUserInfoEvent());
       }
     });
+
+    on<UpdateAddressEvent>((event, emit) async {
+      var result = await repository.updateAddress(
+        province: event.province,
+        district: event.district,
+        commune: event.commune,
+        detail: event.detail,
+      );
+      if (result) {
+        add(FetchCurrentUserInfoEvent());
+      }
+    });
   }
 }

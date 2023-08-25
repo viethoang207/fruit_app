@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/widgets.dart';
-import 'package:training_example/features/cart/presentation/cart_page.dart';
 import 'package:training_example/features/general_page/general_page.dart';
-import 'package:training_example/features/home/presentation/home_page.dart';
-import 'package:training_example/features/search/presentation/search_page.dart';
+import 'package:training_example/features/setting/presentation/change_address.dart';
 import 'package:training_example/features/setting/presentation/change_language.dart';
-import 'package:training_example/features/setting/presentation/setting_page.dart';
 import 'package:training_example/models/product/product.dart';
 
 import '../features/detail/detail_page.dart';
@@ -14,8 +11,6 @@ import '../features/setting/presentation/change_name.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> _shellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
@@ -45,5 +40,12 @@ final router = GoRouter(
           builder: (context, state) {
             String name = state.extra as String;
             return ChangeNamePage(currentName: name);
+          }),
+      GoRoute(
+          path: '/changeAddress',
+          name: 'changeAddress',
+          builder: (context, state) {
+            Map<String, String?> address = state.extra as Map<String, String?>;
+            return ChangeAddressPage(address: address);
           }),
     ]);

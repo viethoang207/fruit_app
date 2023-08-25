@@ -26,4 +26,19 @@ class UserRepository {
       return false;
     }
   }
+
+  Future<bool> updateAddress({required String province, required String district, required String commune, required detail}) async {
+    String? username = auth.currentUser?.email;
+    try {
+      await db.collection('User').doc(username).update({
+        'province': province,
+        'district': district,
+        'commune': commune,
+        'detailAddress': detail
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

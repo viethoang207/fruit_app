@@ -47,5 +47,13 @@
   "changeName": "Chỉnh sửa tên",
   "invalidName": "Tên không hợp lệ!",
   "changeNameSuccess": "Đổi tên thành công!",
-  "changeNameFailed": "Không thể thay đổi tên bây giờ\nVui lòng thử lại sau"
+  "changeNameFailed": "Không thể thay đổi tên bây giờ\nVui lòng thử lại sau",
+  "changeAddress": "Cập nhật địa chỉ",
+  "changeAddressSuccess": "Cập nhật địa chỉ thành công",
+  "pleaseFillData": "Hãy điền đủ thông tin",
+  "chooseProvince": "Chọn tỉnh/thành phố",
+  "chooseDistrict": "Chọn quận/huyện",
+  "chooseCommune": "Chọn phường/xã",
+  "detailAddressTitle": "Tên đường, toà nhà, số nhà",
+  "inputDetail": "Điền địa chỉ chi tiết"
 }

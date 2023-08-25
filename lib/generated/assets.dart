@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String assetsDataDb = 'assets/data/db.json';
   static const String assetsFirebaseLogo = 'assets/firebase_logo.png';
   static const String assetsFreshFruits = 'assets/fresh_fruits.json';
   static const String assetsGreeting = 'assets/greeting.png';
@@ -13,6 +14,7 @@ class Assets {
   static const String assetsSearching = 'assets/searching.png';
   static const String assetsShipping = 'assets/shipping.json';
   static const String assetsVarietyFruits = 'assets/variety_fruits.json';
+  static const String dataDb = 'assets/data/db.json';
   static const String fruitAppAssetsImageDefault = 'assets/image_default.jpeg';
   static const String localizationEn = 'assets/localization/en.json';
   static const String localizationVi = 'assets/localization/vi.json';

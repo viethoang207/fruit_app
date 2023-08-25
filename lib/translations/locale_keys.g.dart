@@ -50,5 +50,13 @@ abstract class  LocaleKeys {
   static const invalidName = 'invalidName';
   static const changeNameSuccess = 'changeNameSuccess';
   static const changeNameFailed = 'changeNameFailed';
+  static const changeAddress = 'changeAddress';
+  static const changeAddressSuccess = 'changeAddressSuccess';
+  static const pleaseFillData = 'pleaseFillData';
+  static const chooseProvince = 'chooseProvince';
+  static const chooseDistrict = 'chooseDistrict';
+  static const chooseCommune = 'chooseCommune';
+  static const detailAddressTitle = 'detailAddressTitle';
+  static const inputDetail = 'inputDetail';
 
 }

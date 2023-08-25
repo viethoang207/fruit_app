@@ -63,7 +63,15 @@ class CodegenLoader extends AssetLoader{
   "changeName": "Change your name",
   "invalidName": "Your name is invalid!",
   "changeNameSuccess": "Change your name successfully!",
-  "changeNameFailed": "Can not change your name now\nPlease try again later"
+  "changeNameFailed": "Can not change your name now\nPlease try again later",
+  "changeAddress": "Change your address",
+  "changeAddressSuccess": "Update your address successfully",
+  "pleaseFillData": "Please fill all address data",
+  "chooseProvince": "Choose Province",
+  "chooseDistrict": "Choose Province",
+  "chooseCommune": "Choose Province",
+  "detailAddressTitle": "Street name, Building, House number",
+  "inputDetail": "Input your detail address"
 };
 static const Map<String,dynamic> vi = {
   "language": "Ngôn ngữ",
@@ -114,7 +122,15 @@ static const Map<String,dynamic> vi = {
   "changeName": "Chỉnh sửa tên",
   "invalidName": "Tên không hợp lệ!",
   "changeNameSuccess": "Đổi tên thành công!",
-  "changeNameFailed": "Không thể thay đổi tên bây giờ\nVui lòng thử lại sau"
+  "changeNameFailed": "Không thể thay đổi tên bây giờ\nVui lòng thử lại sau",
+  "changeAddress": "Cập nhật địa chỉ",
+  "changeAddressSuccess": "Cập nhật địa chỉ thành công",
+  "pleaseFillData": "Hãy điền đủ thông tin",
+  "chooseProvince": "Chọn tỉnh/thành phố",
+  "chooseDistrict": "Chọn quận/huyện",
+  "chooseCommune": "Chọn phường/xã",
+  "detailAddressTitle": "Tên đường, toà nhà, số nhà",
+  "inputDetail": "Điền địa chỉ chi tiết"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "vi": vi};
 }

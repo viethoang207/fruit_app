@@ -20,3 +20,5 @@ class ChangeNameSuccessState extends UserInfoState {
     required this.name,
   });
 }
+
+class ChangeAddressSuccessState extends UserInfoState {}

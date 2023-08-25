@@ -23,7 +23,7 @@ class FruitItem extends StatelessWidget {
               color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.circular(15)),
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

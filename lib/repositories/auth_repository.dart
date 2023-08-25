@@ -34,7 +34,10 @@ class AuthRepository {
         user: user.UserInfo(
             username: email,
             name: email,
-            address: '',
+            province: '',
+            district: '',
+            commune: '',
+            detailAddress: '',
             phone: '',
             imageURL: Constants.defaultImageUrl));
     return Constants.loginSuccess;
