@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_example/features/cart/presentation/cart_page.dart';
 import 'package:training_example/features/home/presentation/home_page.dart';
 import 'package:training_example/features/search/presentation/search_page.dart';

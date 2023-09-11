@@ -80,7 +80,9 @@ class _HomePageState extends State<HomePage>
             color: Colors.grey,
             size: 35,
           ),
-          onPressed: () {},
+          onPressed: () {
+            GoRouter.of(context).push('/usersRemotePage');
+          },
         ),
         actions: [
           Container(
@@ -151,22 +153,28 @@ class _HomePageState extends State<HomePage>
                     thickness: 1.5,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 3 / 5),
-                          itemCount: state.products.length,
-                          itemBuilder: (context, index) {
-                            return FruitItem(
-                                item: state.products[index],
-                                onTap: () {
-                                  GoRouter.of(context).pushNamed('detail',
-                                      extra: state.products[index]);
-                                });
-                          }),
+                      child: RefreshIndicator(
+                        onRefresh: () async {
+                          await Future.delayed(const Duration(milliseconds: 1500));
+                          productBloc.add(FetchProductsEvent(category: Constants.generalCategories[currentPickedCategory]));
+                        },
+                        child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10,
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 3 / 5),
+                            itemCount: state.products.length,
+                            itemBuilder: (context, index) {
+                              return FruitItem(
+                                  item: state.products[index],
+                                  onTap: () {
+                                    GoRouter.of(context).pushNamed('detail',
+                                        extra: state.products[index]);
+                                  });
+                            }),
+                      ),
                     ),
                   ),
                 );

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:training_example/di/injection.dart';
+import 'package:training_example/fake_api/bloc/user_bloc.dart';
 import 'package:training_example/features/authentication/blocs/auth_bloc.dart';
 import 'package:training_example/features/authentication/presentation/login_page.dart';
 import 'package:training_example/features/cart/bloc/cart_bloc.dart';
@@ -73,6 +74,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => getIt.get<SearchBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<RemoteUsersBloc>(),
           )
         ],
         child: StreamBuilder<User?>(
