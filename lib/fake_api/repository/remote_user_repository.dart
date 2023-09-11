@@ -20,10 +20,8 @@ class RemoteUserRepository {
       final jsonResponse = json.decode(response);
       final fakeUserResponse = RemoteUserResponse.fromJson(jsonResponse);
       List<RemoteUser> users = fakeUserResponse.users ?? [];
-      print(users.length);
       return users;
     } catch (e) {
-      print(e);
       throw Exception('Can not load users from server: $e');
     }
   }

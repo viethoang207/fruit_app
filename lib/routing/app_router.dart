@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:training_example/features/general_page/general_page.dart';
 import 'package:training_example/features/setting/presentation/change_address.dart';
 import 'package:training_example/features/setting/presentation/change_language.dart';
-import 'package:training_example/features/users_remote/remote_user_page.dart';
+import 'package:training_example/features/users_list/user_list_page.dart';
 import 'package:training_example/models/product/product.dart';
 
 import '../features/detail/detail_page.dart';

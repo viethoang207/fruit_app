@@ -75,9 +75,9 @@ class _HomePageState extends State<HomePage>
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
-            Icons.menu_rounded,
-            color: Colors.grey,
+          icon: Icon(
+            Icons.person,
+            color: Colors.green.shade800,
             size: 35,
           ),
           onPressed: () {
