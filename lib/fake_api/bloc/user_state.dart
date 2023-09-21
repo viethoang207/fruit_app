@@ -11,9 +11,13 @@ class RemoteUsersErrorState extends RemoteUsersState {
 
 class RemoteUsersFetchedState extends RemoteUsersState {
   final List<RemoteUser> users;
+  final bool? showLoadMore;
 
   RemoteUsersFetchedState({
     required this.users,
+    required this.showLoadMore;
   });
 }
+
+class RemoteUsersLoadingMoreState extends RemoteUsersState {}
 

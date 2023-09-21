@@ -28,7 +28,7 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
   void initState() {
     _listController.addListener(_scrollListener);
     remoteUsersBloc = context.read<RemoteUsersBloc>();
-    remoteUsersBloc.add(FetchRemoteUsersEvent(limit: 20, skip: 0));
+    remoteUsersBloc.add(FetchRemoteUsersEvent(isFirstTime: true));
     super.initState();
   }
 
@@ -65,14 +65,13 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
         child: BlocBuilder<RemoteUsersBloc, RemoteUsersState>(
           builder: (context, state) {
             if (state is RemoteUsersLoadingState) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Center(child: CircularProgressIndicator());
             } else if (state is RemoteUsersFetchedState) {
+
               return RefreshIndicator(
                 onRefresh: () async {
                   remoteUsersBloc.add(
-                      FetchRemoteUsersEvent(limit: 20, skip: 0));
+                      FetchRemoteUsersEvent(isFirstTime: true));
                 },
                 child: SizedBox(
                   height: double.infinity,
@@ -92,16 +91,23 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
                             controller: _listController,
                             itemCount: state.users.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return RemoteUserWidget(user: state.users[index]);
+                              return RemoteUserWidget(
+                                  user: state.users[index]);
                             },
                           ),
                         ),
+                        const SizedBox(height: 16),
                         Visibility(
                           visible: _showLoadMore,
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              CircularProgressIndicator(),
+                              SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator()
+                              ),
+                              SizedBox(width: 15),
                               Text('Loading...')
                             ],
                           ),
@@ -125,17 +131,21 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
   }
 
   Future<bool> loadMore() async {
-    setState(() {
-      _showLoadMore = true;
-    });
-    remoteUsersBloc.add(FetchRemoteUsersEvent(limit: loadingThreshold, skip: users.length));
+    showLoadMoreEffect(canShow: true);
+    remoteUsersBloc.add(FetchRemoteUsersEvent(isFirstTime: false));
     return true;
   }
 
   void _scrollListener() {
-    if (_listController.position.pixels == _listController.position.maxScrollExtent) {
-      // Reached the end of the list
+    if (_listController.position.pixels ==
+        _listController.position.maxScrollExtent) {
       loadMore();
     }
+  }
+
+  void showLoadMoreEffect({required canShow}) {
+    setState(() {
+      _showLoadMore = canShow;
+    });
   }
 }

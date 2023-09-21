@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:training_example/constants/constants.dart';
 import 'package:training_example/fake_api/bloc/user_event.dart';
 import 'package:training_example/fake_api/bloc/user_state.dart';
 import 'package:training_example/fake_api/repository/remote_user_repository.dart';
@@ -18,15 +19,14 @@ class RemoteUsersBloc extends Bloc<RemoteUsersEvent, RemoteUsersState> {
     try {
       var users = <RemoteUser>[];
 
-      if (event.skip == 0) {
+      if (event.isFirstTime == true) {
         emit(RemoteUsersLoadingState());
-        var data = await repository.getUsers(limit: event.limit, skip: 0);
+        var data = await repository.getUsers(limit: Constants.userLoadingThreshold, skip: 0);
         users.addAll(data);
-      } else if (state is RemoteUsersFetchedState) {
+      } else {
         var fetchedUserState = state as RemoteUsersFetchedState;
         var oldUsers = fetchedUserState.users;
-        // var newUsers = await repository.getUsers(limit: event.limit, skip: event.skip);
-        var newUsers = fetchedUserState.users;
+        var newUsers = await repository.getUsers(limit: Constants.userLoadingThreshold, skip: oldUsers.length);
         users.addAll(oldUsers);
         users.addAll(newUsers);
       }

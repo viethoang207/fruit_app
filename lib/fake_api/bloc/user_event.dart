@@ -1,11 +1,9 @@
 abstract class RemoteUsersEvent {}
 
 class FetchRemoteUsersEvent extends RemoteUsersEvent {
-  final int limit;
-  final int skip;
+  final bool? isFirstTime;
 
   FetchRemoteUsersEvent({
-    required this.limit,
-    required this.skip,
+    required this.isFirstTime,
   });
 }
