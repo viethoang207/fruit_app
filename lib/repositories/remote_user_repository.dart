@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
-import 'package:training_example/fake_api/model/remote_user_response.dart';
-import 'package:training_example/fake_api/service/api_service.dart';
+import 'package:training_example/models/remote_user_response.dart';
 
-import '../model/users.dart';
+import '../features/users_list/service/api_service.dart';
+import '../models/users.dart';
 
 @singleton
 class RemoteUserRepository {
@@ -14,7 +14,8 @@ class RemoteUserRepository {
     required this.apiService,
   });
 
-  Future<List<RemoteUser>> getUsers({required int limit, required int skip}) async {
+  Future<List<RemoteUser>> getUsers(
+      {required int limit, required int skip}) async {
     try {
       var response = await apiService.fetchUsersData(limit: limit, skip: skip);
       final jsonResponse = json.decode(response);

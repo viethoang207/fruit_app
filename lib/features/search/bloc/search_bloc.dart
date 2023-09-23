@@ -9,10 +9,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final ProductRepository repository;
 
   SearchBloc({required this.repository}) : super(SearchInitState()) {
-    on<SearchRequestEvent>((event, emit) async {
-      emit(SearchLoadingState());
-      var rs = await repository.searchProducts(keyword: event.keyword);
-      emit(SearchResultState(result: rs));
-    });
+    on<SearchRequestEvent>(_onSearchRequest);
+  }
+
+  Future<void> _onSearchRequest(
+      SearchRequestEvent event, Emitter<SearchState> emit) async {
+    emit(SearchLoadingState());
+    var rs = await repository.searchProducts(keyword: event.keyword);
+    emit(SearchResultState(result: rs));
   }
 }

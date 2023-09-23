@@ -1,13 +1,12 @@
-import 'dart:io';
-
 import 'package:injectable/injectable.dart';
-import 'package:training_example/fake_api/service/api_constants.dart';
 import 'package:http/http.dart' as http;
+
+import 'api_constants.dart';
 
 @singleton
 class ApiService {
-
-  Future<dynamic> executeGET({required String endpoint, Map<String, dynamic>? params}) async {
+  Future<dynamic> executeGET(
+      {required String endpoint, Map<String, dynamic>? params}) async {
     var uri = Uri.https(ApiConstants.baseUrl, endpoint, params);
 
     var response = await http.get(uri);
@@ -19,14 +18,15 @@ class ApiService {
     }
   }
 
-  Future<dynamic> fetchUsersData({required int limit, required int skip}) async {
-    print('load users: limit: $limit - skip: $skip');
+  Future<dynamic> fetchUsersData(
+      {required int limit, required int skip}) async {
     var endpoint = ApiConstants.userEndpoint;
     var queryParameters = {
       'limit': '$limit',
       'skip': '$skip',
     };
-    var rs = await executeGET(endpoint: endpoint, params: queryParameters) as String;
+    var rs =
+        await executeGET(endpoint: endpoint, params: queryParameters) as String;
     return rs;
   }
 }

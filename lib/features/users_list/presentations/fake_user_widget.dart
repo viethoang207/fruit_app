@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:training_example/fake_api/model/users.dart';
+
+import '../../../models/users.dart';
 
 class RemoteUserWidget extends StatelessWidget {
   final RemoteUser user;
+
   const RemoteUserWidget({Key? key, required this.user}) : super(key: key);
 
   @override

@@ -10,15 +10,17 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   final ProductRepository repository;
 
   ProductBloc({required this.repository}) : super(ProductsLoadingState()) {
-    on<FetchProductsEvent>((event, emit) async {
-      try {
-        emit(ProductsLoadingState());
-        var products = await repository.getListProduct(
-            category: event.category);
-        emit(ProductsFetchedState(products: products));
-      } on FirebaseException catch (e) {
-        emit(ProductsErrorState(error: e.toString()));
-      }
-    });
+    on<FetchProductsEvent>(_onFetchProductRequest);
+  }
+
+  Future<void> _onFetchProductRequest(
+      FetchProductsEvent event, Emitter<ProductState> emit) async {
+    try {
+      emit(ProductsLoadingState());
+      var products = await repository.getListProduct(category: event.category);
+      emit(ProductsFetchedState(products: products));
+    } on FirebaseException catch (e) {
+      emit(ProductsErrorState(error: e.toString()));
+    }
   }
 }

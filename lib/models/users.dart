@@ -1,7 +1,7 @@
-import 'address.dart';
-import 'bank.dart';
+import '../../models/address.dart';
+import '../../models/bank.dart';
 import 'company.dart';
-import 'hair.dart';
+import '../../models/hair.dart';
 
 class RemoteUser {
   int? id;

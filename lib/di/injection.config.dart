@@ -11,10 +11,6 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:training_example/fake_api/bloc/user_bloc.dart' as _i8;
-import 'package:training_example/fake_api/repository/remote_user_repository.dart'
-    as _i7;
-import 'package:training_example/fake_api/service/api_service.dart' as _i3;
 import 'package:training_example/features/authentication/blocs/auth_bloc.dart'
     as _i12;
 import 'package:training_example/features/cart/bloc/cart_bloc.dart' as _i13;
@@ -23,9 +19,15 @@ import 'package:training_example/features/home/bloc/product_bloc/product_bloc.da
 import 'package:training_example/features/home/bloc/user_info_bloc/user_info_bloc.dart'
     as _i15;
 import 'package:training_example/features/search/bloc/search_bloc.dart' as _i9;
+import 'package:training_example/features/users_list/bloc/user_bloc.dart'
+    as _i8;
+import 'package:training_example/features/users_list/service/api_service.dart'
+    as _i3;
 import 'package:training_example/repositories/auth_repository.dart' as _i4;
 import 'package:training_example/repositories/cart_repository.dart' as _i5;
 import 'package:training_example/repositories/product_repository.dart' as _i6;
+import 'package:training_example/repositories/remote_user_repository.dart'
+    as _i7;
 import 'package:training_example/repositories/user_repository.dart' as _i10;
 import 'package:training_example/repositories/vn_address_repository.dart'
     as _i11;

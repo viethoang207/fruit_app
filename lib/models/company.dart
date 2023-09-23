@@ -1,4 +1,4 @@
-import 'address.dart';
+import '../../models/address.dart';
 
 class Company {
   Address? address;

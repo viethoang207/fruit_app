@@ -12,42 +12,40 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
 
   AuthBloc({required this.authRepository}) : super(UnAuthenticatedState()){
-    on<LoginRequest>((event, state) async {
-      emit(Loading());
-      try {
-        var result = await authRepository.signIn(email: event.email, password: event.password);
-        if (result != Constants.loginSuccess) {
-          emit(AuthenticateErrorState(error: result));
-        } else {
-          emit(AuthenticatedState());
-        }
-      } catch (e) {
-        emit(AuthenticateErrorState(error: e.toString()));
-      }
-    });
-
-    on<LogoutRequest>((event, state) {
-      authRepository.signOut();
-    });
-
-    on<SignUpRequest>((event, state) async {
-      emit(Loading());
-      try {
-        var result = await authRepository.createAccount(email: event.email, password: event.password);
-        if (result != Constants.loginSuccess) {
-          emit(SignUpErrorState(error: result));
-        } else {
-          emit(AuthenticatedState());
-        }
-      } catch (e) {
-        emit(SignUpErrorState(error: e.toString()));
-      }
-    });
+    on<LoginRequest>(_onLoginRequest);
+    on<LogoutRequest>(_onLogoutRequest);
+    on<SignUpRequest>(_onSignUpRequest);
   }
 
-  @override
-  Future<void> close() {
-    print('AuthBloc has closed');
-    return super.close();
+  Future<void> _onLoginRequest(LoginRequest event, Emitter<AuthState> emit) async {
+    emit(Loading());
+    try {
+      var result = await authRepository.signIn(email: event.email, password: event.password);
+      if (result != Constants.loginSuccess) {
+        emit(AuthenticateErrorState(error: result));
+      } else {
+        emit(AuthenticatedState());
+      }
+    } catch (e) {
+      emit(AuthenticateErrorState(error: e.toString()));
+    }
+  }
+
+  Future<void> _onLogoutRequest(LogoutRequest event, Emitter<AuthState> emit) async {
+    authRepository.signOut();
+  }
+
+  Future<void> _onSignUpRequest(SignUpRequest event, Emitter<AuthState> emit) async {
+    emit(Loading());
+    try {
+      var result = await authRepository.createAccount(email: event.email, password: event.password);
+      if (result != Constants.loginSuccess) {
+        emit(SignUpErrorState(error: result));
+      } else {
+        emit(AuthenticatedState());
+      }
+    } catch (e) {
+      emit(SignUpErrorState(error: e.toString()));
+    }
   }
 }

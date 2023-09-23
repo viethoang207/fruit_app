@@ -1,4 +1,4 @@
-import 'package:training_example/fake_api/model/users.dart';
+import 'package:training_example/models/users.dart';
 
 class RemoteUserResponse {
   List<RemoteUser>? users;
@@ -31,4 +31,3 @@ class RemoteUserResponse {
     return data;
   }
 }
-

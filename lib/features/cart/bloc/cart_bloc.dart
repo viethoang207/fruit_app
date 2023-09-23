@@ -9,43 +9,52 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final CartRepository cartRepo;
 
   CartBloc({required this.cartRepo}) : super(CartLoadingState()) {
-    on<FetchCartItemEvent>((event, state) async {
-      emit(CartLoadingState());
-      try {
-        var cartItems = await cartRepo.getCartItems();
-        emit(CartLoadedState(cartData: cartItems));
-      } catch (e) {
-        emit(CartErrorState(error: e.toString()));
-      }
-    });
+    on<FetchCartItemEvent>(_onFetchCartItemRequest);
+    on<AddCartItemEvent>(_onAddCartItemRequest);
+    on<UpdateQuantityEvent>(_onUpdateQuantityRequest);
+    on<RemoveCartItemEvent>(_onRemoveCartItemRequest);
+  }
 
-    on<AddCartItemEvent>((event, state) async {
-      try {
-        var rs = await cartRepo.addProductToCart(
-            quantity: event.quantity, productId: event.productId);
-        if (rs) {
-          emit(AddedCartItemState());
-        } else {
-          emit(AddCartItemErrorState(error: 'Can not add to Cart'));
-        }
-      } catch (e) {
+  Future<void> _onFetchCartItemRequest(
+      FetchCartItemEvent event, Emitter<CartState> emit) async {
+    emit(CartLoadingState());
+    try {
+      var cartItems = await cartRepo.getCartItems();
+      emit(CartLoadedState(cartData: cartItems));
+    } catch (e) {
+      emit(CartErrorState(error: e.toString()));
+    }
+  }
+
+  Future<void> _onAddCartItemRequest(
+      AddCartItemEvent event, Emitter<CartState> emit) async {
+    try {
+      var rs = await cartRepo.addProductToCart(
+          quantity: event.quantity, productId: event.productId);
+      if (rs) {
+        emit(AddedCartItemState());
+      } else {
         emit(AddCartItemErrorState(error: 'Can not add to Cart'));
       }
-    });
+    } catch (e) {
+      emit(AddCartItemErrorState(error: 'Can not add to Cart'));
+    }
+  }
 
-    on<UpdateQuantityEvent>((event, state) async {
-      await cartRepo.updateProductQuantity(
-          quantity: event.quantity,
-          productId: event.productId,
-          isIncrease: event.isIncrease);
-    });
+  Future<void> _onUpdateQuantityRequest(
+      UpdateQuantityEvent event, Emitter<CartState> emit) async {
+    await cartRepo.updateProductQuantity(
+        quantity: event.quantity,
+        productId: event.productId,
+        isIncrease: event.isIncrease);
+  }
 
-    on<RemoveCartItemEvent>((event, state) async {
-      bool rs = await cartRepo.removeCartItem(productId: event.productId);
-      if (!rs) {
-        emit(RemovedCartItemErrorState(
-            error: 'Can not find item in Cart or something went wrong'));
-      }
-    });
+  Future<void> _onRemoveCartItemRequest(
+      RemoveCartItemEvent event, Emitter<CartState> emit) async {
+    bool rs = await cartRepo.removeCartItem(productId: event.productId);
+    if (!rs) {
+      emit(RemovedCartItemErrorState(
+          error: 'Can not find item in Cart or something went wrong'));
+    }
   }
 }

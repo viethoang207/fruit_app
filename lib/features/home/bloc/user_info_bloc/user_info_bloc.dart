@@ -9,28 +9,35 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   final UserRepository repository;
 
   UserInfoBloc({required this.repository}) : super(UserInfoLoadingState()) {
-    on<FetchCurrentUserInfoEvent>((event, emit) async {
-      var info = await repository.getCurrentUserInfo();
-      emit(UserInfoFetchedState(userInfo: info));
-    });
+    on<FetchCurrentUserInfoEvent>(_onFetchCurrentUserInfoRequest);
+    on<ChangeNameEvent>(_onChangeNameRequest);
+    on<UpdateAddressEvent>(_onUpdateAddressRequest);
+  }
 
-    on<ChangeNameEvent>((event, emit) async {
-      var result = await repository.changeName(name: event.name);
-      if (result) {
-        add(FetchCurrentUserInfoEvent());
-      }
-    });
+  Future<void> _onFetchCurrentUserInfoRequest(
+      FetchCurrentUserInfoEvent event, Emitter<UserInfoState> emit) async {
+    var info = await repository.getCurrentUserInfo();
+    emit(UserInfoFetchedState(userInfo: info));
+  }
 
-    on<UpdateAddressEvent>((event, emit) async {
-      var result = await repository.updateAddress(
-        province: event.province,
-        district: event.district,
-        commune: event.commune,
-        detail: event.detail,
-      );
-      if (result) {
-        add(FetchCurrentUserInfoEvent());
-      }
-    });
+  Future<void> _onChangeNameRequest(
+      ChangeNameEvent event, Emitter<UserInfoState> emit) async {
+    var result = await repository.changeName(name: event.name);
+    if (result) {
+      add(FetchCurrentUserInfoEvent());
+    }
+  }
+
+  Future<void> _onUpdateAddressRequest(
+      UpdateAddressEvent event, Emitter<UserInfoState> emit) async {
+    var result = await repository.updateAddress(
+      province: event.province,
+      district: event.district,
+      commune: event.commune,
+      detail: event.detail,
+    );
+    if (result) {
+      add(FetchCurrentUserInfoEvent());
+    }
   }
 }

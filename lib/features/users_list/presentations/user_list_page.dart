@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:training_example/fake_api/bloc/user_bloc.dart';
-import 'package:training_example/fake_api/bloc/user_event.dart';
-import 'package:training_example/fake_api/model/users.dart';
-import 'package:training_example/features/users_list/fake_user_widget.dart';
 
-import '../../fake_api/bloc/user_state.dart';
+import '../../../models/users.dart';
+import '../bloc/user_bloc.dart';
+import '../bloc/user_event.dart';
+import '../bloc/user_state.dart';
+import 'fake_user_widget.dart';
 
 class UsersRemotePage extends StatefulWidget {
   const UsersRemotePage({Key? key}) : super(key: key);
@@ -22,6 +22,7 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
   List<RemoteUser> users = [];
   int loadingThreshold = 10;
   bool _showLoadMore = false;
+
   int get count => users.length;
 
   @override
@@ -57,8 +58,8 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
               _showUpButton = false;
             });
           },
-          child: const Icon(
-              Icons.vertical_align_top_outlined, color: Colors.white),
+          child: const Icon(Icons.vertical_align_top_outlined,
+              color: Colors.white),
         ),
       ),
       body: SafeArea(
@@ -67,11 +68,9 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
             if (state is RemoteUsersLoadingState) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is RemoteUsersFetchedState) {
-
               return RefreshIndicator(
                 onRefresh: () async {
-                  remoteUsersBloc.add(
-                      FetchRemoteUsersEvent(isFirstTime: true));
+                  remoteUsersBloc.add(FetchRemoteUsersEvent(isFirstTime: true));
                 },
                 child: SizedBox(
                   height: double.infinity,
@@ -91,8 +90,7 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
                             controller: _listController,
                             itemCount: state.users.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return RemoteUserWidget(
-                                  user: state.users[index]);
+                              return RemoteUserWidget(user: state.users[index]);
                             },
                           ),
                         ),
@@ -105,8 +103,7 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
                               SizedBox(
                                   width: 20,
                                   height: 20,
-                                  child: CircularProgressIndicator()
-                              ),
+                                  child: CircularProgressIndicator()),
                               SizedBox(width: 15),
                               Text('Loading...')
                             ],
