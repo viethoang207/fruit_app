@@ -8,6 +8,8 @@ import 'package:training_example/di/injection.dart';
 import 'package:training_example/features/authentication/blocs/auth_bloc.dart';
 import 'package:training_example/features/authentication/presentation/login_page.dart';
 import 'package:training_example/features/cart/bloc/cart_bloc.dart';
+import 'package:training_example/features/general_page/bloc/connectivity_bloc.dart';
+import 'package:training_example/features/general_page/bloc/connectivity_event.dart';
 import 'package:training_example/features/home/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:training_example/features/search/bloc/search_bloc.dart';
 import 'package:training_example/routing/app_router.dart';
@@ -79,7 +81,10 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => getIt.get<RemoteUsersBloc>(),
-          )
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<ConnectivityBloc>()..add(ConnectivityInitialEvent()),
+          ),
         ],
         child: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
