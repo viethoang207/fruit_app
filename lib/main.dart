@@ -12,13 +12,14 @@ import 'package:training_example/features/general_page/bloc/connectivity_bloc.da
 import 'package:training_example/features/general_page/bloc/connectivity_event.dart';
 import 'package:training_example/features/home/bloc/user_info_bloc/user_info_bloc.dart';
 import 'package:training_example/features/search/bloc/search_bloc.dart';
+import 'package:training_example/features/users_list/bloc/load_more/load_more_cubit.dart';
 import 'package:training_example/routing/app_router.dart';
 import 'package:training_example/features/splash/introduction_page.dart';
 import 'package:training_example/translations/codegen_loader.g.dart';
 
 import 'constants/fonts.dart';
 import 'features/home/bloc/product_bloc/product_bloc.dart';
-import 'features/users_list/bloc/user_bloc.dart';
+import 'features/users_list/bloc/remote_user/remote_user_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,6 +79,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => getIt.get<SearchBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<LoadMoreCubit>(),
           ),
           BlocProvider(
             create: (context) => getIt.get<RemoteUsersBloc>(),

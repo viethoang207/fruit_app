@@ -1,12 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:training_example/features/users_list/bloc/load_more/load_more_cubit.dart';
 
 import '../../../models/users.dart';
-import '../bloc/user_bloc.dart';
-import '../bloc/user_event.dart';
-import '../bloc/user_state.dart';
-import 'fake_user_widget.dart';
+import '../bloc/remote_user/remote_user_bloc.dart';
+import '../bloc/remote_user/remote_user_event.dart';
+import '../bloc/remote_user/remote_user_state.dart';
+import 'remote_user_widget.dart';
 
 class UsersRemotePage extends StatefulWidget {
   const UsersRemotePage({Key? key}) : super(key: key);
@@ -21,7 +23,6 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
   bool _showUpButton = false;
   List<RemoteUser> users = [];
   int loadingThreshold = 10;
-  bool _showLoadMore = false;
 
   int get count => users.length;
 
@@ -63,72 +64,84 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
         ),
       ),
       body: SafeArea(
-        child: BlocBuilder<RemoteUsersBloc, RemoteUsersState>(
-          builder: (context, state) {
-            if (state is RemoteUsersLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is RemoteUsersFetchedState) {
-              return RefreshIndicator(
-                onRefresh: () async {
-                  remoteUsersBloc.add(FetchRemoteUsersEvent(isFirstTime: true));
-                },
-                child: SizedBox(
-                  height: double.infinity,
-                  child: NotificationListener<ScrollNotification>(
-                    onNotification: (notification) {
-                      if (notification is ScrollUpdateNotification) {
-                        setState(() {
-                          _showUpButton = true;
-                        });
-                      }
-                      return false;
+        child: Stack(
+          children: [
+            BlocBuilder<RemoteUsersBloc, RemoteUsersState>(
+              buildWhen: (previous, current) {
+                return current is! RemoteUsersLoadingMoreState;
+              },
+              builder: (context, state) {
+                if (state is RemoteUsersLoadingState) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is RemoteUsersFetchedState) {
+                  return RefreshIndicator(
+                    onRefresh: () async {
+                      remoteUsersBloc.add(
+                          FetchRemoteUsersEvent(isFirstTime: true));
                     },
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            controller: _listController,
-                            itemCount: state.users.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return RemoteUserWidget(user: state.users[index]);
-                            },
-                          ),
+                    child: NotificationListener<ScrollNotification>(
+                      onNotification: (notification) {
+                        if (notification is ScrollUpdateNotification) {
+                          setState(() {
+                            _showUpButton = true;
+                          });
+                        }
+                        return false;
+                      },
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height,
+                        child: ListView.builder(
+                          controller: _listController,
+                          itemCount: state.users.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return RemoteUserWidget(
+                                user: state.users[index]);
+                          },
                         ),
-                        const SizedBox(height: 16),
-                        Visibility(
-                          visible: _showLoadMore,
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: CircularProgressIndicator()),
-                              SizedBox(width: 15),
-                              Text('Loading...')
-                            ],
-                          ),
-                        )
+                      ),
+                    ),
+                  );
+                } else if (state is RemoteUsersErrorState) {
+                  return Center(
+                    child: Text('Some thing went wrong\n${state.error}'),
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              left: 0,
+              child: BlocBuilder<LoadMoreCubit, bool>(
+                buildWhen: (previous, current) => previous != current,
+                builder: (context, isLoading) {
+                  return Visibility(
+                    visible: isLoading,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(),
+                        ),
+                        SizedBox(width: 15),
+                        Text('Loading...'),
                       ],
                     ),
-                  ),
-                ),
-              );
-            } else if (state is RemoteUsersErrorState) {
-              return Center(
-                child: Text('Some thing went wrong\n${state.error}'),
-              );
-            } else {
-              return Container();
-            }
-          },
+                  );
+                },
+              ),
+            )
+          ],
         ),
       ),
     );
   }
 
   Future<bool> loadMore() async {
-    showLoadMoreEffect(canShow: true);
     remoteUsersBloc.add(FetchRemoteUsersEvent(isFirstTime: false));
     return true;
   }
@@ -138,11 +151,5 @@ class _UsersRemotePageState extends State<UsersRemotePage> {
         _listController.position.maxScrollExtent) {
       loadMore();
     }
-  }
-
-  void showLoadMoreEffect({required canShow}) {
-    setState(() {
-      _showLoadMore = canShow;
-    });
   }
 }

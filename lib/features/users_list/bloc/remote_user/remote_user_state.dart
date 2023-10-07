@@ -1,4 +1,4 @@
-import '../../../models/users.dart';
+import '../../../../models/users.dart';
 
 abstract class RemoteUsersState {}
 
@@ -16,4 +16,8 @@ class RemoteUsersFetchedState extends RemoteUsersState {
   RemoteUsersFetchedState({required this.users});
 }
 
-class RemoteUsersLoadingMoreState extends RemoteUsersState {}
+class RemoteUsersLoadingMoreState extends RemoteUsersState {
+  final bool isLoading;
+
+  RemoteUsersLoadingMoreState({required this.isLoading});
+}
