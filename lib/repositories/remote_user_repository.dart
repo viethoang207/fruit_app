@@ -14,11 +14,10 @@ class RemoteUserRepository {
     required this.apiService,
   });
 
-  Future<List<RemoteUser>> getUsers(
-      {required int limit, required int skip}) async {
+  Future<List<RemoteUser>> getUsers({required int limit, required int skip}) async {
     try {
       var response = await apiService.fetchUsersData(limit: limit, skip: skip);
-      final jsonResponse = json.decode(response);
+      final jsonResponse = json.decode(response.data);
       final fakeUserResponse = RemoteUserResponse.fromJson(jsonResponse);
       List<RemoteUser> users = fakeUserResponse.users ?? [];
       return users;
